@@ -1,4 +1,25 @@
-Evelyn: look at nltk -> wn to see what methods are available for WSD
-Kiran:  look at pywsd and make it work, comment code in research paper format
-Albert: look at pywsd and make it work, sort by variance the list of ambiguous words
-All: look for newer research papers that do WSD, also look into the papers from the pywsd github README. 
+Evelyn: implement methods in handle_data.py
+Kiran:  implement methods in handle_data.py
+Albert: figure testing stuff out
+
+(note: pywsd may or may not be helpful, look at it as you desire)
+(note: some methods from nltk -> wn should be useful) 
+
+handle_data.py: 
+
+LSA full method: write the full modified LSA method: that means building the matrix and performing SVD 
+
+Lesk-score full method: calculate modified Lesk score for a word in a corpus (loop over all sentences, calculate ties to words in sentence, get an average)
+
+corpus_transform: transform the corpus into the MWR (multiple-word representation)
+
+filtering method: we want to treat words as potentially different meanings if and only if they have a high enough MSS (multiple-sense score)
+
+recommendation engine (cosine similarity): compute cosine of the sense-vectors to see how similar they are
+
+actual sense tagging: we should be able to match the sense of the word with the correct sense ID (in SenseEval) 
+
+(potentially)
+part_of_speech check: we can win easily for a couple of cases if we just check part of speech
+
+word_net check: (use built-in word net sense disambiguation) 
