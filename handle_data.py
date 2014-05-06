@@ -81,6 +81,21 @@ def lsa_matrix_dict(context_list):
 # recommender system comes later when we get a new input phrase
 # or not, we just get a new input phrase now? but we want to store this model i think
 # and then increment it
+
+# THE THING WE CARE ABOUT REDUCING IS V! WE REDUCE ITS DIMENSION, THIS IS THE MEANING MATRIX
+# EACH COLUMN IS A DOCUMENT WITH A PARTICULAR SENSE ATTACHED TO IT 
+# WE FOLD INTO SEMANTIC SPACE BY MULTIPLYING BY U* AND D^-1. 
+# THIS IS WHAT WE DO COSINE SIMILARITY ON 
+
+# THEN, THIS IS WHAT WE DO: FOR EACH POSSIBLE SENSE OF THE WORD (DERIVED FROM TRAINING), 
+# WE FOLD THE REPRESENTATION INTO THIS SEMANTIC SPACE (AS DESCRIBED ABOVE). 
+# WE FOLD THE REPRESENTATION OF THE WORD WE'RE TRYING TO DISAMBIGUATE INTO SEMANTIC SPACE
+# TOO, AND COMPARE WITH ALL THE OTHER SENSE-SEMANTIC VECTORS TO SEE WHICH ONE IS CLOSEST IN MEANING.
+
+# this is key: 
+# *********** TRAINING DATA MUST CONTAIN DOCUMENTS THAT CORRESPOND TO CERTAIN SEMANTIC SENSES. ************
+
+
 def LSA(context_list):
 	M, wd = lsa_matrix_dict(context_list)
 	U, s, V = svd(M)
@@ -95,5 +110,10 @@ def LSA(context_list):
 	print "V:"
 	print V
 
+# cs = context sentence
+# ambig = ambiguous word
+# returns the row vector which is most similar
+# to the input using cosine similarity ? 
 
+def lsa_wsd(cs, ambig)
 
