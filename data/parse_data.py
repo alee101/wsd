@@ -1,10 +1,17 @@
 import xml.etree.ElementTree as ET
 from collections import defaultdict
+import re
 
 class TrainingInstance:
     def __init__(self, instance_id, context):
         self.iid = instance_id
         self.context = context
+    def sentence_context(self):
+        sentence = [self.context[0].split('.')[-1], self.context[1], self.context[2]]
+        sentence = map(lambda s: re.sub(r'\[.*?\]|\n', '', s), sentence)
+        # sentence = map(lambda s: re.sub(r'\[.*?\]', '', s), sentence)
+        # return map(lambda s: s.strip(), sentence)
+        return map(lambda s: s.strip(' '), sentence)
 
 wsds = defaultdict(lambda: defaultdict(list))
 
@@ -27,8 +34,9 @@ for word in root.findall('lexelt'):
             wsds[word][senseid].append(TrainingInstance(instanceid, context))
 
 for word in wsds:
-    print 'WORD: ', word
+    print '\n***WORD: ', word, '***'
     for senseid in wsds[word]:
-        print 'SENSEID: ', senseid
+        print '\n**SENSEID: ', senseid, '**'
         for instance in wsds[word][senseid]:
             print instance.iid
+            print instance.sentence_context()

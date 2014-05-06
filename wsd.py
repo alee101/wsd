@@ -1,6 +1,12 @@
 import xml.etree.ElementTree as ET
 from collections import defaultdict
+import re
 from nltk.corpus import wordnet as wn
+import nltk
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 # A training instance contains the instance id and the corresponding context
 # in which it appeared, where the context is a three element list containing
@@ -10,6 +16,13 @@ class TrainingInstance:
     def __init__(self, instanceid, context):
         self.iid = instanceid
         self.context = context
+    def sentence_context(self):
+        # Return the sentence in which the word being disambiguated appears
+        sentence = [self.context[0].split('.')[-1], self.context[1], self.context[2]]
+        # Strip tags, newlines, leading and trailing whitespace
+        sentence = map(lambda s: re.sub(r'\[.*?\]|\n', '', s), sentence)
+        return map(lambda s: s.strip(' '), sentence)
+
 
 # Return a dictionary whose key is a word being disambiguated and value is 
 # another dictionary whose key is a sense key and value is a list of TrainingInstances.
@@ -44,6 +57,11 @@ def get_synset(sense_key):
         print 'Could not find synset for sense key ' + sense_key
     return synset
 
+# Return part of speech tags for given sentence
+def get_pos(sent):
+    tokens = nltk.word_tokenize(sent)
+    tag_tuples = nltk.pos_tag(tokens)
+    return tag_tuples
 
 wsds = parse_data('data/eng-lex-sample.training.xml')
 for word in wsds:
