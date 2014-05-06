@@ -57,12 +57,12 @@ def parse_test_data(f_data):
     #tree = ET.parse('sample-test.xml', parser=parser)
     root = tree.getroot()
     for word in root.findall('lexelt'):
-        print word.attrib
+        # print word.attrib
         instances = word.findall('instance')
         for instance in instances:
             instanceid = instance.attrib['id']
             word = instanceid.split('.')[0]
-            print word
+            # print word
             context = list(instance.find('context').itertext())
             test_dict[word].append(DataInstance(instanceid, context))
 
