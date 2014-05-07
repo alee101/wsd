@@ -7,13 +7,13 @@ import nltk
 
 # Return the predicted WordNet sense key of the given word using the given bigram model and bigram
 # if the frequency count and probability thresholds are met. Return None otherwise.
-def predict_sensekey(bigram_model, word, bigram, count_threshold=5, prob_threshold=0.8):
+def predict_sensekey(bigram_model, word, bigram, count_threshold=3, prob_threshold=0.83):
     if bigram in bigram_model[word]:
         sensekey_dict = bigram_model[word][bigram]
-        if (sensekey_dict['count'] > count_threshold and 
+        if (sensekey_dict['count'] >= count_threshold and 
             heapq.nlargest(3, sensekey_dict.itervalues())[1] > prob_threshold):
-            #return bigram_model[word][bigram]
-            return heapq.nlargest(3, sensekey_dict, key=sensekey_dict.__getitem__)[1]
+            prediction = heapq.nlargest(3, sensekey_dict, key=sensekey_dict.__getitem__)[1]
+            return (prediction, sensekey_dict[prediction]) 
     return None
 
 # Return forward and backward bigram test data, returning a cached copy if it exists. 

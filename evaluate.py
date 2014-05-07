@@ -9,8 +9,9 @@ with open('key.sorted') as f_results:
 with open('out') as f_predictions:
     for line in f_predictions:
         fields = line.strip().split()
-        (word, iid, sensekey) = fields
+        (word, iid, sensekey) = fields[:3]
+        metadata = fields[3:]
         if sensekey in answers[word][iid]:
-            print 'Yes'
+            print 'Yes', metadata
         else:
-            print 'No'
+            print 'No', metadata
