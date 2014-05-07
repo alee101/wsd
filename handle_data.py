@@ -126,11 +126,12 @@ def topic_modeler(context_list):
 # Do SVD on M, do dimension reduction to dim, 
 # return resulting matrices 
 def pca(M, dim):
-	## THIS IS EXTREMELY FUCKING SLOW RIGHT NOW ## 
 	U, s, Vt = svd(M, full_matrices=False)
 	V = Vt.T
 	# we want to chop of irrelevant part of s
+	print len(U)
 	print s
+	print V
 	D = np.diag(s)
 
 
