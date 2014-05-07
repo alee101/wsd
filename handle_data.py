@@ -84,24 +84,63 @@ def topic_modeler(context_list):
 	for category in brown.categories(): 
 		category_map[category] = cat_num
 		for w in brown.words(categories=category):
+			w = w.lower() #lowercase everything
 			if w not in words:
 				words[w] = []
 				for i in range(1, cat_num):
 					words[w].append(0)
-				words[w].append(1)
+				words[w].append(1) # at index cat_num - 1
 			else: 
-				if len(words[w]) == cat_num - 1:
+				curr_index = len(words[w]) - 1
+				if curr_index < cat_num -1: 
+					while curr_index < cat_num -2: 
+						words[w].append(0)
+						curr_index += 1
+					assert (len(words[w]) == cat_num -1)
 					words[w].append(1)
 				else:
-					words[w][cat_num -1] += 1
+					words[w][cat_num - 1] += 1
 		cat_num += 1
+	cat_num = len(brown.categories())
 	list_form = words.values()
 	for l in list_form:
-		while len(l) < cat_num - 1:
+		while len(l) < cat_num:
 			l.append(0)
-	return np.matrix(list_form), category_map
+		assert len(l) == cat_num
+	for l in list_form: 
+		# normalize
+		summed = sum(l) + 0.0
+		for i in range(0, len(l)):
+			l[i] = l[i]/summed
+	# word_dict is so that we have a map between row # and word
+	word_dict = dict()
+	i = 1
+	for w in words.keys():
+		word_dict[w] = i
+		i += 1
+
+	return word_dict, np.matrix(list_form), category_map
+
+# M = matrix  
+# http://stackoverflow.com/questions/1730600/principal-component-analysis-in-python 
+# Do SVD on M, do dimension reduction to dim, 
+# return resulting matrices 
+def pca(M, dim):
+	## THIS IS EXTREMELY FUCKING SLOW RIGHT NOW ## 
+	U, s, Vt = svd(M, full_matrices=False)
+	V = Vt.T
+	# we want to chop of irrelevant part of s
+	print s
+	D = np.diag(s)
 
 
+
+
+
+
+# OLD STUFF # 
+
+'''
 # transforms the corpus into multiple-word representation (MWR)
 # c is a .txt file containing corpus
 # MIGHT NOT USE THIS AT ALL ACTUALLY! 
@@ -215,4 +254,6 @@ def LSA(context_list):
 # to the input using cosine similarity ? 
 
 #def lsa_wsd(cs, ambig):
+'''
+
 
