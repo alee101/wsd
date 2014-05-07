@@ -12,6 +12,95 @@
 
 import numpy as np 
 from numpy.linalg import svd 
+from nltk.corpus import brown  
+
+
+# from swarthmore paper: 
+
+# The training data contains documents that each correspond to a specific semantic sense.
+# This data is then parsed to form a large term-document matrix which is then decomposed
+# into U, D, V^T matrices. 
+
+# The test data is parsed into individual vectors for each document,
+# containing the counts for each term in the document. Within this document, there exists a
+# single test word to be disambiguated. 
+
+# The test vectors will be compared after being folded into semantic space by multiplying 
+# by U* and S^-1 * (the dimension-reduced versions)
+
+
+## TWO THINGS WE CAN DO
+
+## 1) row vectors are specific word-senses, column vectors are distance-scores to non-ambiguous words
+##    -- meaning, for each row: we have a word, w. we want to make the columns -- nah
+
+
+## 2) the columns are each a document about a certain topic. we have the rows as words (not sense-specific)
+##    then, we look at the number of occurrences for a given word in each document topic and write it down. 
+##    we take the logs of these values and average by row. then we do SVD. resulting analysis is based around
+##    the column vectors (the topics.) basically, we reduce dimension appropriately after SVD. this is then our model.
+##    now what we do is we are given a paragraph or something, and we project the term-document matrix that this relates to
+##    into the space of our model (i.e. we want to figure out what topic it is -- BECAUSE TOPICS ARE A ONE-TO-ONE MAP TO 
+##    WORD SENSE -- OUR INPUT DATA NEEDS TO BE TOPIC -BASED HERE, WE CAN USE BROWN CORPUS FOR DIFFERENT TOPICS). 
+##    then we can use cosine similarity to determine which topic column it is most similar to. So we have our topic column
+##    that we are most similar to now. good. 
+
+##    now what we have to do is use the training data appropriately: so we have a bunch of senses and example 
+##    paragraphs where it is labeled what sense the word we want to disambiguate has. we get a probability measure
+##    for mappings between topic column vectors and between word senses for a word. WE MAY HAVE THE OCCASION THAT 
+##    THE NUMBER OF WORD SENSES IS LESS THAN THE NUMBER OF TOPIC VECTORS. this is something to watch out for. (i.e.
+##    what if the topic column vector that a word usage matches to is none of the columns for which a sense is recognized)
+##    
+##    SO: how do we get the word sense from the training data (tagged word-sense associated with paragraph). 
+##    we figure out what topic the paragraph is supposed to be ==> T1, T2, etc. <- one of these
+##    we have a word-sense vector: word_sense1: T1:3, T2:0, T3:4, T4:1000
+## 								   word_sense2: T1:89, T2: 38, T3:39, T4:6
+##								   word_sense3: T1:8, T2: 398, T4:93, T4:82
+##								   etc. 
+
+##
+##	  If our input test data is just a paragraph where we are given the word we have to disambiguate, then the option we 
+##    have is to see what the topic is for the paragraph (based on projecting as discussed before). When we get our topic,
+##    we sum the columns over that topic and average to see which word_sense is most likely. Suppose we got T3 as our
+##    topic for a paragraph containing ambiguous word "word". then we would see 93/(4 + 39 + 93) is the probability that
+##    the word sense is word_sense3 with that probability, and that is what we would guess the word_sense is. 
+
+##    IF however our input test data is a SET OF PARAGRAPHS EACH ON ONE OF THE TOPICS Ti where we know usage is the same
+##    (just unknown)
+##    (we want to cover all possible topics), THEN WHAT WE COULD DO is build a WORD_SENSE VECTOR for our unknown 
+##    word sense and USE COSINE SIMILARITY ON THE WORD_SENSE VECTORS to determine which word_sense is most likely. 
+##    the reason this is valid is because a given word sense would have differing frequencies on different topics--
+##    it is possible that "bank" in the sense of river bank is just used VERY RARELY in financial texts. of course
+##    it is allowed that there are 0 occurrences. 
+##    weaknesses here: if all other topics are 0 counts (i.e. T1:0, T2:0, T3:48, T4:0), then this is exactly the
+##    same as the previously discussed approach. 
+##    another weakness is that we might not have the knowledge that a word is used in a specific sense in T1, T2, etc. 
+##    also we might need a lot of data to do this.
+
+def topic_modeler(context_list):
+	words = dict()
+	category_map = dict()
+	cat_num = 1
+	for category in brown.categories(): 
+		category_map[category] = cat_num
+		for w in brown.words(categories=category):
+			if w not in words:
+				words[w] = []
+				for i in range(1, cat_num):
+					words[w].append(0)
+				words[w].append(1)
+			else: 
+				if len(words[w]) == cat_num - 1:
+					words[w].append(1)
+				else:
+					words[w][cat_num -1] += 1
+		cat_num += 1
+	list_form = words.values()
+	for l in list_form:
+		while len(l) < cat_num - 1:
+			l.append(0)
+	return np.matrix(list_form), category_map
+
 
 # transforms the corpus into multiple-word representation (MWR)
 # c is a .txt file containing corpus
@@ -35,6 +124,9 @@ def transform_corpus(c):
 			transformed.append(ftrans_line)
 	return " ".join(transformed)
 				
+
+# so basically, every "context column" should be a paragraph
+# about a specific version of the topic? 
 
 # context_list is a list of separated 
 # contexts from a document, where each context is a string
@@ -96,6 +188,7 @@ def lsa_matrix_dict(context_list):
 # *********** TRAINING DATA MUST CONTAIN DOCUMENTS THAT CORRESPOND TO CERTAIN SEMANTIC SENSES. ************
 
 
+# 
 def LSA(context_list):
 	M, wd = lsa_matrix_dict(context_list)
 	U, s, V = svd(M)
@@ -110,10 +203,16 @@ def LSA(context_list):
 	print "V:"
 	print V
 
+
+
+
+
+
+
 # cs = context sentence
 # ambig = ambiguous word
 # returns the row vector which is most similar
 # to the input using cosine similarity ? 
 
-def lsa_wsd(cs, ambig)
+#def lsa_wsd(cs, ambig):
 
