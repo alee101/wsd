@@ -92,7 +92,7 @@ def nice_word(w):
 ##    This is a more hardcore "contextual-overlap" approach 
 
 # this is specifically for brown corpus
-def topic_modeler():
+def brown_model():
     words = dict()
     category_map = dict()
     cat_num = 1
@@ -116,6 +116,7 @@ def topic_modeler():
                 else:
                     words[w][cat_num - 1] += 1
         cat_num += 1
+    '''
     cat_num = len(brown.categories())
     list_form = words.values()
     for l in list_form:
@@ -133,25 +134,25 @@ def topic_modeler():
     for w in words.keys():
         word_dict[w] = i
         i += 1
-
-    return word_dict, np.matrix(list_form), category_map
+    '''
+    return words#, word_dict, np.matrix(list_form), category_map
 
 ## APPROACH WITH COLUMNS AS TRAINING PARAGRAPHS
-# so basically, every "context column" should be a paragraph
-# about a specific sense of the word
-# ideally we want to do both brown and the training data.
+# so basically, every "context column" should be a set of paragraphs 
+# where a word is used in the same sense
+# we do brown and the training data.
 
-#training_dict = dp.parse_training_data('data/eng-lex-sample.training.xml')
 
-def topic_modeler_general(training_dict):
+def topic_modeler(training_dict):
     context_list = []
     for w in training_dict.keys():
         for sense in training_dict[w].keys():
+            sense_instance_str = ""
             for instance in training_dict[w][sense]:
-                context_list.append(instance.paragraph_context())
+                sense_instance_str += instance.paragraph_context()
+            context_list.append(sense_instance_str)
     cols = len(context_list)
-    print cols
-    words = dict()
+    words = brown_model()
     cat_num = 1
     for category in context_list: 
         c = category.split(" ")
@@ -215,6 +216,7 @@ def pca(M):
     # we want to chop of irrelevant part of s
     s_s = sorted(s)
     s_len = len(s)
+    orig_size = s_len
     chop_num1 = 0
     for i in range(0, s_len):
         if s_s[i] < 1: 
@@ -223,7 +225,7 @@ def pca(M):
     for i in range(0, chop_num1):
         s = np.delete(s, (s_len - (i + 1)))
     s_len = len(s)
-    # square sum must be 90% of total square summed singular values
+    # square sum must be 85% of total square summed singular values
     total_sq_sum = sum(v*v for v in s)
     curr_sq_sum = 0
     chop_num2 = 0
@@ -233,19 +235,21 @@ def pca(M):
             chop_num2 += 1
     chop_num = chop_num1 + chop_num2
     # now chop
-    D = D[:(s_len - chop_num), :(s_len - chop_num)]
+    D = D[:(orig_size - chop_num), :(orig_size - chop_num)]
     
     # now take care of deleting from U and V appropriately 
     # delete chop_num rows from the bottoms of U and V 
-    U = U[:, :(s_len - chop_num)]
-    V = V[:, :(s_len - chop_num)]
+    U = U[:, :(orig_size - chop_num)]
+    V = V[:, :(orig_size - chop_num)]
 
     reconstructed = np.dot(U, np.dot(D, V.T))
     return U, D, V, reconstructed
 
 # actual values for use
 # calculate once
-wd, term_docM, cm = topic_modeler()
+
+td = dp.parse_training_data('data/eng-lex-sample.training.xml')
+wd, term_docM = topic_modeler(td)
 U_, D_, V_, recon = pca(term_docM)
 
 # projects the document into the space defined by the pca
