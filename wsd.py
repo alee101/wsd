@@ -56,5 +56,5 @@ print trained_model
 #         else:
 #             break
 for instance in test_dict[word]:
-    prediction = supervised_lsa.guess_word_sense(trained_model, word, instance.paragraph_context())
-    print word, instance.iid, prediction, 'lsa'  
+	prediction = supervised_lsa.guess_word_sense(trained_model, word, instance.paragraph_context())
+	print word, instance.iid, prediction, 'lsa'  

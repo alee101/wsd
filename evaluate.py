@@ -15,3 +15,4 @@ with open('out') as f_predictions:
             print 'Yes', metadata
         else:
             print 'No', metadata
+
