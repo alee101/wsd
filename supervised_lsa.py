@@ -142,6 +142,8 @@ def topic_modeler():
 # context_list is a list of separated 
 # contexts from a document, where each context is a string
 # RETURN the LSA MATRIX and WORD-TO-ROW# DICTIONARY AS A TUPLE.
+# this should be general 
+# ideally we want to do both brown and the training data. 
 def lsa_matrix_dict(context_list):
     cols = len(context_list)
     # each word is a row
@@ -152,6 +154,7 @@ def lsa_matrix_dict(context_list):
     for context in context_list: 
         c = context.split(" ")
         for w in c: 
+            w = nice_word(w)
             if w not in words:
                 words[w] = []
                 for i in range(1, context_num):
@@ -255,81 +258,42 @@ def project(doc_str):
     new_doc_vec = np.dot(doc_vec, np.dot(U_, inv(D_)))
     return new_doc_vec
 
-# use cosine similarity to check doc_vec (a document column vector)
-# against all the other topic vectors in the reduced space
-# return the topic which is closest it
-def most_sim_topic(doc_vec):
+
+
+# analagous to most_sim_topic:
+# instaed of returning a single topic, we return a vector 
+# of probabilities that it is each topic
+# -1 is really bad, 1 is really close to a given topic eigenvector
+def prob_topic_vec(doc_vec):
     doc_vec = np.array(doc_vec)
     cosines = map(lambda v: np.vdot(np.array(v), doc_vec)/(norm(np.array(v)) * norm(doc_vec)) , V_)
-    max_v = -2 # out of range of cosine
-    max_index = 0
-    for i in range(0, len(cosines)):
-        if cosines[i] > max_v:
-            max_index = i
-            #print brown.categories()[max_index]
-            max_v = cosines[i]
-            #print max_v
-    # print max_v
-    # print brown.categories()[max_index]
-    return max_index
-
-# train_data:
-# list of tuples of string, word, classification
-# i.e: 
-##
-##   ("They went the store and then ....", "store", /wordnet_sense_id/)
-
-## NOTE: from basic tests, it seems that having the brown corpus as the columns
-##       is not the greatest, what we may want to do is hand-generate better 
-##       corpuses for the specific words involved and use these as our columns
+    return np.array(cosines)
 
 
-## probably should re-write this so it is more clear
+
+# uses topic eigenvectors for each word-sense instead of counts for each topic eigenvector
+# basically average over examples to get general topic eigenvector for each word-sense
+# then when you're testing, you do a cosine comparison with the avg. topic eigenvector for each sense
 def train_model(train_data):
     word_sense_dict = dict()
     for (doc_str, w, sense) in train_data:
-        topic_id = most_sim_topic(project(doc_str)) # in array notation
+        topic_vec = prob_topic_vec(project(doc_str))
         if w not in word_sense_dict:
             word_sense_dict[w] = dict()
-            word_sense_dict[w][sense] = []
-            i = 0
-            while i <= topic_id - 1:
-                word_sense_dict[w][sense].append(0)
-                i += 1
-            word_sense_dict[w][sense].append(1)
+        if sense not in word_sense_dict[w]:
+            word_sense_dict[w][sense] = (topic_vec, 1)
         else:
-            if sense not in word_sense_dict[w]:
-                word_sense_dict[w][sense] = []
-                i = 0
-                while i <= topic_id - 1:
-                    word_sense_dict[w][sense].append(0)
-                    i += 1
-                word_sense_dict[w][sense].append(1)
-            else: 
-                w_sense_len = len(word_sense_dict[w][sense])
-                if topic_id <= w_sense_len -1:
-                    word_sense_dict[w][sense][topic_id] += 1
-                else:
-                    for i in range(0, topic_id - w_sense_len):
-                        word_sense_dict[w][sense].append(0)
-                    word_sense_dict[w][sense].append(1)
-    # normalize
-    # do we want to normalize only with respect to columns? 
-    # no, we want to normalize along rows AND along columns -- or not
-    '''
+            word_sense_dict[w][sense] = (np.add(topic_vec, word_sense_dict[w][sense][0]), word_sense_dict[w][sense][1] + 1)
+    # average
     for w in word_sense_dict.keys():
         for sense in word_sense_dict[w].keys():
-            # note if it's not full length (i.e. all 9 columns), the rest will just be zero
-            summed = sum(word_sense_dict[w][sense]) + 0.0
-            for i in range(0, len(word_sense_dict[w][sense])):
-                word_sense_dict[w][sense][i] /= summed
-    '''
+            word_sense_dict[w][sense] = word_sense_dict[w][sense][0]/ (word_sense_dict[w][sense][1] + 0.0)
     return word_sense_dict
 
 # some test train_data
 td1 = [("i like chasing rivers and running alongside banks", "bank", "wn_bank_1"), ("i like going to the bank and getting money", "bank", "wn_bank_2"), ("i am scared of bats in caves", "bat", "wn_bat_1"), ("i play baseball with my bat", "bat", "wn_bat_2")]
 
-td2 = [("i like chasing rivers and running alongside banks", "bank", "wn_bank_1"), ("the river bank is an interesting place because of the animals and plants", "bank", "wn_bank_1"), ("i like going to the bank and getting money", "bank", "wn_bank_2"), ("i am scared of bats in caves", "bat", "wn_bat_1"), ("i play baseball with my bat", "bat", "wn_bat_2")]
+td2 = [("i like chasing rivers and running alongside banks", "bank", "wn_bank_1"), ("animals are cute and so is running alongside banks", "bank", "wn_bank_1"), ("the river bank is an interesting place because of the animals and plants", "bank", "wn_bank_1"), ("i like going to the bank and getting money", "bank", "wn_bank_2"), ("i am scared of bats in caves", "bat", "wn_bat_1"), ("i play baseball with my bat", "bat", "wn_bat_2")]
 
 
 # takes labled data from somewhere 
@@ -347,40 +311,32 @@ def make_training_data(training_dict, word):
             training_data.append((paragraph, word, sense_key))
     return training_data
 
-# given an ambiguous word and a context
-# which it is in, return the word sense from wordnet
-# word is just a string
-# context is a string (i.e. a doc_str)
+
+# for given word and context, calculate topic vector for context. 
+# then for given word, compare topic vector to each sense with cosine similarity 
+# return the sense that has best cosine similarity. 
 def guess_word_sense(trained_model, word, context):
     word = nice_word(word)
-    topic_id = most_sim_topic(project(context))
-    likelihoods = []
+    topic_vec = prob_topic_vec(project(context))
+    max_sense = "nullsense"
+    max_cosine = -2 # outside min domain of cosine
+    def cos_sim(v1, v2):
+        return np.vdot(v1, v2)/(norm(v2) * norm(v2))
     for sense in trained_model[word].keys():
-        curr_word_sense = trained_model[word][sense]
-        if topic_id > len(curr_word_sense) -1:
-            # print brown.categories()[len(curr_word_sense) - 1]
-            # print brown.categories()[topic_id]
-            likelihoods.append((sense, 0 + 0.0))
-        else:
-            likelihoods.append((sense, curr_word_sense[topic_id]))
-    summed = 0.0
-    for i in range(0, len(likelihoods)):
-        summed += likelihoods[i][1]
-    error_sense = "Sorry, the data indicates that all senses have probability 0. Sadface."
-    if summed == 0.0:
-        return error_sense #, 0.0, likelihoods #(the latter two are for testing)
-    likelihoods = map(lambda (ws, p): (ws, p/summed), likelihoods)
-    max_prob = 0.0
-    max_sense = error_sense
-    for (sense, probability) in likelihoods:
-        if probability > max_prob:
-            max_prob = probability
+        sense_vec = trained_model[word][sense]
+        curr_cos_sim = cos_sim(topic_vec, sense_vec)
+        print sense
+        print sense_vec
+        print curr_cos_sim
+        if curr_cos_sim > max_cosine:
             max_sense = sense
-    return max_sense #, max_prob, likelihoods #(the latter two are for testing)
+            max_cosine = curr_cos_sim
+    return max_sense
 
 
 
 # OLD STUFF # 
+
 
 '''
 # transforms the corpus into multiple-word representation (MWR)
@@ -483,9 +439,109 @@ def LSA(context_list):
     print V
 
 
+# use cosine similarity to check doc_vec (a document column vector)
+# against all the other topic vectors in the reduced space
+# return the eigentopic which is closest it
+def most_sim_topic(doc_vec):
+    doc_vec = np.array(doc_vec)
+    cosines = map(lambda v: np.vdot(np.array(v), doc_vec)/(norm(np.array(v)) * norm(doc_vec)) , V_)
+    max_v = -2 # out of range of cosine
+    max_index = 0
+    for i in range(0, len(cosines)):
+        if cosines[i] > max_v:
+            max_index = i
+            #print brown.categories()[max_index]
+            max_v = cosines[i]
+            #print max_v
+    # print max_v
+    # print brown.categories()[max_index]
+    return max_index
+
+# train_data:
+# list of tuples of string, word, classification
+# i.e: 
+##
+##   ("They went the store and then ....", "store", /wordnet_sense_id/)
+
+## NOTE: from basic tests, it seems that having the brown corpus as the columns
+##       is not the greatest, what we may want to do is hand-generate better 
+##       corpuses for the specific words involved and use these as our columns
 
 
+## probably should re-write this so it is more clear
+def train_model_old(train_data):
+    word_sense_dict = dict()
+    for (doc_str, w, sense) in train_data:
+        topic_id = most_sim_topic(project(doc_str)) # in array notation
+        if w not in word_sense_dict:
+            word_sense_dict[w] = dict()
+            word_sense_dict[w][sense] = []
+            i = 0
+            while i <= topic_id - 1:
+                word_sense_dict[w][sense].append(0)
+                i += 1
+            word_sense_dict[w][sense].append(1)
+        else:
+            if sense not in word_sense_dict[w]:
+                word_sense_dict[w][sense] = []
+                i = 0
+                while i <= topic_id - 1:
+                    word_sense_dict[w][sense].append(0)
+                    i += 1
+                word_sense_dict[w][sense].append(1)
+            else: 
+                w_sense_len = len(word_sense_dict[w][sense])
+                if topic_id <= w_sense_len -1:
+                    word_sense_dict[w][sense][topic_id] += 1
+                else:
+                    for i in range(0, topic_id - w_sense_len):
+                        word_sense_dict[w][sense].append(0)
+                    word_sense_dict[w][sense].append(1)
+    # normalize
+    # do we want to normalize only with respect to columns? 
+    # yes, because otherwise the presence of a 1.0 will dominate along columns.
 
+    
+    #for w in word_sense_dict.keys():
+    #    for sense in word_sense_dict[w].keys():
+    #        # note if it's not full length (i.e. all 9 columns), the rest will just be zero
+    #        summed = sum(word_sense_dict[w][sense]) + 0.0
+    #        for i in range(0, len(word_sense_dict[w][sense])):
+    #            word_sense_dict[w][sense][i] /= summed
+    
+    return word_sense_dict
+
+
+# given an ambiguous word and a context
+# which it is in, return the word sense from wordnet
+# word is just a string
+# context is a string (i.e. a doc_str)
+def guess_word_sense_old(trained_model, word, context):
+    word = nice_word(word)
+    topic_id = most_sim_topic(project(context))
+    likelihoods = []
+    for sense in trained_model[word].keys():
+        curr_word_sense = trained_model[word][sense]
+        if topic_id > len(curr_word_sense) -1:
+            # print brown.categories()[len(curr_word_sense) - 1]
+            # print brown.categories()[topic_id]
+            likelihoods.append((sense, 0 + 0.0))
+        else:
+            likelihoods.append((sense, curr_word_sense[topic_id]))
+    summed = 0.0
+    for i in range(0, len(likelihoods)):
+        summed += likelihoods[i][1]
+    error_sense = "Sorry, the data indicates that all senses have probability 0. Sadface."
+    if summed == 0.0:
+        return error_sense #, 0.0, likelihoods #(the latter two are for testing)
+    likelihoods = map(lambda (ws, p): (ws, p/summed), likelihoods)
+    max_prob = 0.0
+    max_sense = error_sense
+    for (sense, probability) in likelihoods:
+        if probability > max_prob:
+            max_prob = probability
+            max_sense = sense
+    return max_sense #, max_prob, likelihoods #(the latter two are for testing)
 
 
 # cs = context sentence
