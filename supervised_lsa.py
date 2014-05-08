@@ -17,7 +17,7 @@ from numpy.linalg import norm
 from nltk.corpus import brown  
 
 
-punctuation_list = [",", ".", ";", "\"", "'", "!", "?"]
+punctuation_list = [",", ".", ";", "\"", "'", "!", "?", ":"]
 
 # makes words in nice format
 def nice_word(w):
