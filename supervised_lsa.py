@@ -311,17 +311,17 @@ def guess_word_sense(word, context):
 	for sense in trained_model[word].keys():
 		curr_word_sense = trained_model[word][sense]
 		if topic_id > len(curr_word_sense) -1:
-			print brown.categories()[len(curr_word_sense) - 1]
-			print brown.categories()[topic_id]
+			# print brown.categories()[len(curr_word_sense) - 1]
+			# print brown.categories()[topic_id]
 			likelihoods.append((sense, 0 + 0.0))
 		else:
 			likelihoods.append((sense, curr_word_sense[topic_id]))
 	summed = 0.0
 	for i in range(0, len(likelihoods)):
 		summed += likelihoods[i][1]
-	error_sense = "Sorry, the data indicates that all senses have probability 0. Sadface. \n"
+	error_sense = "Sorry, the data indicates that all senses have probability 0. Sadface."
 	if summed == 0.0:
-		return error_sense, 0.0, likelihoods
+		return error_sense #, 0.0, likelihoods #(the latter two are for testing)
 	likelihoods = map(lambda (ws, p): (ws, p/summed), likelihoods)
 	max_prob = 0.0
 	max_sense = error_sense
@@ -329,7 +329,9 @@ def guess_word_sense(word, context):
 		if probability > max_prob:
 			max_prob = probability
 			max_sense = sense
-	return max_sense, max_prob, likelihoods
+	return max_sense #, max_prob, likelihoods #(the latter two are for testing)
+
+
 
 # OLD STUFF # 
 
