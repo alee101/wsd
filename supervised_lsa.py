@@ -303,7 +303,7 @@ def make_training_data(training_dict):
 	            pre_count = pre.count(w)
 	            match_count = 0
 	            paragraph = instance.paragraph_context()
-	            training_data.append(paragraph, instance.context[1], sense_key)
+	            training_data.append((paragraph, instance.context[1], sense_key))
 	return training_data
 
 # given an ambiguous word and a context
