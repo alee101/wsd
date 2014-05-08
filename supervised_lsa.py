@@ -264,6 +264,7 @@ def project(doc_str):
 # instaed of returning a single topic, we return a vector 
 # of probabilities that it is each topic
 # -1 is really bad, 1 is really close to a given topic eigenvector
+# we leave negative signs in here because we want to represent opposed-ness of the semantic vectors
 def prob_topic_vec(doc_vec):
     doc_vec = np.array(doc_vec)
     cosines = map(lambda v: np.vdot(np.array(v), doc_vec)/(norm(np.array(v)) * norm(doc_vec)) , V_)
