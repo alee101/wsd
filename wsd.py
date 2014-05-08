@@ -39,12 +39,22 @@ test_dict = dataparser.parse_test_data('data/eng-lex-sample.evaluation.xml')
 #             # print word, forward_bigrams_test[word][bigram], forward_prediction[0], forward_prediction[1]       
 #             print word, instance_id, forward_prediction[0], 'forward'
 
-trained_model = supervised_lsa.train_model(supervised_lsa.make_training_data(training_dict))
-count = 0
-for word in test_dict:
-    for instance in test_dict[word]:
-        if count < 10:
-            prediction = supervised_lsa.guess_word_sense(trained_model, word, instance.paragraph_context())
-            print word, instance_id, prediction, 'lsa'
-        else:
-            break
+#for word in training_dict:
+word = 'fine'
+lsa_training_data = supervised_lsa.make_training_data(training_dict, word)
+# print lsa_training_data
+trained_model = supervised_lsa.train_model(lsa_training_data)
+print trained_model
+#trained_model = supervised_lsa.train_model(supervised_lsa.make_training_data(training_dict))
+#print trained_model
+# count = 0
+# for word in test_dict:
+#     for instance in test_dict[word]:
+#         if count < 10:
+#             prediction = supervised_lsa.guess_word_sense(trained_model, word, instance.paragraph_context())
+#             print word, instance_id, prediction, 'lsa'
+#         else:
+#             break
+for instance in test_dict[word]:
+    prediction = supervised_lsa.guess_word_sense(trained_model, word, instance.paragraph_context())
+    print word, instance.iid, prediction, 'lsa'  
