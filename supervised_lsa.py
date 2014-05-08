@@ -15,6 +15,7 @@ from numpy.linalg import svd
 from numpy.linalg import inv
 from numpy.linalg import norm 
 from nltk.corpus import brown  
+import dataparser as dp 
 
 
 punctuation_list = [",", ".", ";", "\"", "'", "!", "?", ":"]
@@ -138,45 +139,60 @@ def topic_modeler():
 ## APPROACH WITH COLUMNS AS TRAINING PARAGRAPHS
 # so basically, every "context column" should be a paragraph
 # about a specific sense of the word
+# ideally we want to do both brown and the training data.
 
-# context_list is a list of separated 
-# contexts from a document, where each context is a string
-# RETURN the LSA MATRIX and WORD-TO-ROW# DICTIONARY AS A TUPLE.
-# this should be general 
-# ideally we want to do both brown and the training data. 
-def lsa_matrix_dict(context_list):
+#training_dict = dp.parse_training_data('data/eng-lex-sample.training.xml')
+
+def topic_modeler_general(training_dict):
+    context_list = []
+    for w in training_dict.keys():
+        for sense in training_dict[w].keys():
+            for instance in training_dict[w][sense]:
+                context_list.append(instance.paragraph_context())
     cols = len(context_list)
-    # each word is a row
-    # each word gets a list
-    # then we'll stick this into a numpy matrix.
+    print cols
     words = dict()
-    context_num = 1
-    for context in context_list: 
-        c = context.split(" ")
-        for w in c: 
+    cat_num = 1
+    for category in context_list: 
+        c = category.split(" ")
+        for w in c:
             w = nice_word(w)
             if w not in words:
                 words[w] = []
-                for i in range(1, context_num):
+                for i in range(1, cat_num):
                     words[w].append(0)
-                words[w].append(1)
+                words[w].append(1) # at index cat_num - 1
             else: 
-                if len(words[w]) == context_num - 1:
+                curr_index = len(words[w]) - 1
+                if curr_index < cat_num -1: 
+                    while curr_index < cat_num -2: 
+                        words[w].append(0)
+                        curr_index += 1
+                    assert (len(words[w]) == cat_num -1)
                     words[w].append(1)
                 else:
-                    words[w][context_num -1] += 1
-        context_num += 1
+                    words[w][cat_num - 1] += 1
+        cat_num += 1
+    cat_num = cols
     list_form = words.values()
+    for l in list_form:
+        while len(l) < cat_num:
+            l.append(0)
+        assert len(l) == cat_num
+    for l in list_form: 
+        # normalize
+        summed = sum(l) + 0.0
+        for i in range(0, len(l)):
+            l[i] = l[i]/summed
     # word_dict is so that we have a map between row # and word
     word_dict = dict()
     i = 1
     for w in words.keys():
         word_dict[w] = i
         i += 1
-    for l in list_form:
-        while len(l) < context_num -1:
-            l.append(0)
-    return np.matrix(list_form), word_dict
+
+    return word_dict, np.matrix(list_form)
+
 
 
 # M = matrix  
@@ -361,7 +377,64 @@ def transform_corpus(c):
             ftrans_line = " ".join(trans_line)
             transformed.append(ftrans_line)
     return " ".join(transformed)
-                
+
+# context_list is a list of separated 
+# contexts from a document, where each context is a string
+# RETURN the LSA MATRIX and WORD-TO-ROW# DICTIONARY AS A TUPLE.
+# this should be general 
+ 
+def lsa_matrix_dict():
+    context_list = []
+    training_dict = dp.parse_training_data('data/eng-lex-sample.training.xml')
+    for w in training_dict.keys():
+        for sense in training_dict[w].keys():
+            for instance in training_dict[w][sense]:
+                context_list.append(instance.paragraph_context())
+    cols = len(context_list)
+    # each word is a row
+    # each word gets a list
+    # then we'll stick this into a numpy matrix.
+    words = dict()
+    context_num = 1
+    for context in context_list: 
+        c = context.split(" ")
+        for w in c: 
+            w = nice_word(w)
+            if w not in words:
+                words[w] = []
+                for i in range(1, context_num):
+                    words[w].append(0)
+                words[w].append(1) # at index context_num - 1
+            else: 
+                curr_index = len(words[w]) - 1
+                if curr_index < context_num -1: 
+                    while curr_index < context_num -2: 
+                        words[w].append(0)
+                        curr_index += 1
+                    assert (len(words[w]) == context_num -1)
+                    words[w].append(1)
+                else:
+                    words[w][context_num - 1] += 1
+        context_num += 1
+    context_num = len(context_list)
+    list_form = words.values()
+    # word_dict is so that we have a map between row # and word
+    word_dict = dict()
+    i = 1
+    
+    for w in words.keys():
+        word_dict[w] = i
+        i += 1
+    for l in list_form:
+        while len(l) < context_num:
+            l.append(0)
+        assert len(l) == context_num
+    for l in list_form: 
+        # normalize
+        summed = sum(l) + 0.0
+        for i in range(0, len(l)):
+            l[i] = l[i]/summed
+    return list_form #np.matrix(list_form)#, word_dict
 
 # so basically, every "context column" should be a paragraph
 # about a specific sense of the word
