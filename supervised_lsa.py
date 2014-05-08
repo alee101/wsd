@@ -90,6 +90,7 @@ def nice_word(w):
 
 ##    This is a more hardcore "contextual-overlap" approach 
 
+# this is specifically for brown corpus
 def topic_modeler():
     words = dict()
     category_map = dict()
@@ -133,6 +134,47 @@ def topic_modeler():
         i += 1
 
     return word_dict, np.matrix(list_form), category_map
+
+## APPROACH WITH COLUMNS AS TRAINING PARAGRAPHS
+# so basically, every "context column" should be a paragraph
+# about a specific sense of the word
+
+# context_list is a list of separated 
+# contexts from a document, where each context is a string
+# RETURN the LSA MATRIX and WORD-TO-ROW# DICTIONARY AS A TUPLE.
+def lsa_matrix_dict(context_list):
+    cols = len(context_list)
+    # each word is a row
+    # each word gets a list
+    # then we'll stick this into a numpy matrix.
+    words = dict()
+    context_num = 1
+    for context in context_list: 
+        c = context.split(" ")
+        for w in c: 
+            if w not in words:
+                words[w] = []
+                for i in range(1, context_num):
+                    words[w].append(0)
+                words[w].append(1)
+            else: 
+                if len(words[w]) == context_num - 1:
+                    words[w].append(1)
+                else:
+                    words[w][context_num -1] += 1
+        context_num += 1
+    list_form = words.values()
+    # word_dict is so that we have a map between row # and word
+    word_dict = dict()
+    i = 1
+    for w in words.keys():
+        word_dict[w] = i
+        i += 1
+    for l in list_form:
+        while len(l) < context_num -1:
+            l.append(0)
+    return np.matrix(list_form), word_dict
+
 
 # M = matrix  
 # http://stackoverflow.com/questions/1730600/principal-component-analysis-in-python 
@@ -273,13 +315,15 @@ def train_model(train_data):
                     word_sense_dict[w][sense].append(1)
     # normalize
     # do we want to normalize only with respect to columns? 
-    # no, we want to normalize along rows AND along columns
+    # no, we want to normalize along rows AND along columns -- or not
+    '''
     for w in word_sense_dict.keys():
         for sense in word_sense_dict[w].keys():
             # note if it's not full length (i.e. all 9 columns), the rest will just be zero
             summed = sum(word_sense_dict[w][sense]) + 0.0
             for i in range(0, len(word_sense_dict[w][sense])):
                 word_sense_dict[w][sense][i] /= summed
+    '''
     return word_sense_dict
 
 # some test train_data
@@ -363,12 +407,10 @@ def transform_corpus(c):
                 
 
 # so basically, every "context column" should be a paragraph
-# about a specific version of the topic? 
+# about a specific sense of the word
 
 # context_list is a list of separated 
 # contexts from a document, where each context is a string
-# so you need to do the preprocessing work beforehand,
-# and put it into context_list. 
 # RETURN the LSA MATRIX and WORD-TO-ROW# DICTIONARY AS A TUPLE.
 def lsa_matrix_dict(context_list):
     cols = len(context_list)
