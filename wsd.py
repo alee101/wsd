@@ -44,7 +44,6 @@ word = 'fine'
 lsa_training_data = supervised_lsa.make_training_data(training_dict, word)
 # print lsa_training_data
 trained_model = supervised_lsa.train_model(lsa_training_data)
-print trained_model
 #trained_model = supervised_lsa.train_model(supervised_lsa.make_training_data(training_dict))
 #print trained_model
 # count = 0
