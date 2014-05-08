@@ -1,6 +1,6 @@
 import dataparser
 import bigram_model
-import supervised_lsa
+import wsd_lsa as wl
 
 # from collections import defaultdict
 import sys
@@ -40,10 +40,10 @@ test_dict = dataparser.parse_test_data('data/eng-lex-sample.evaluation.xml')
 #             print word, instance_id, forward_prediction[0], 'forward'
 
 #for word in training_dict:
-word = 'fine'
-lsa_training_data = supervised_lsa.make_training_data(training_dict, word)
+word = 'cool'
+lsa_training_data = wl.make_training_data(training_dict, word)
 # print lsa_training_data
-trained_model = supervised_lsa.train_model(lsa_training_data)
+trained_model = wl.train_model_old(lsa_training_data)
 #trained_model = supervised_lsa.train_model(supervised_lsa.make_training_data(training_dict))
 #print trained_model
 # count = 0
@@ -55,5 +55,5 @@ trained_model = supervised_lsa.train_model(lsa_training_data)
 #         else:
 #             break
 for instance in test_dict[word]:
-	prediction = supervised_lsa.guess_word_sense(trained_model, word, instance.paragraph_context())
+	prediction = wl.guess_word_sense_old(trained_model, word, instance.paragraph_context())
 	print word, instance.iid, prediction, 'lsa'  
