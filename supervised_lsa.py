@@ -294,17 +294,23 @@ td2 = [("i like chasing rivers and running alongside banks", "bank", "wn_bank_1"
 # ideally, doc_str contains a bunch of sentences spaced NORMALLY. 
 # WE WANT JUST INDIVIDUAL WORDS (punctuation allowed to be tagged on)
 # when we .split(" ") the sentence. 
-def make_training_data():
-	print "not implemented\n"
-	return td2 # for now
-
-trained_model = train_model(make_training_data())
+def make_training_data(training_dict):
+	training_data = []
+	for word in training_dict:
+	    for sense_key in training_dict[word]:
+	        for instance in training_dict[word][sense_key]:
+	            (pre, w, post) = instance.sentence_context_list()
+	            pre_count = pre.count(w)
+	            match_count = 0
+	            paragraph = instance.paragraph_context()
+	            training_data.append(paragraph, instance.context[1], sense_key)
+	return training_data
 
 # given an ambiguous word and a context
 # which it is in, return the word sense from wordnet
 # word is just a string
 # context is a string (i.e. a doc_str)
-def guess_word_sense(word, context):
+def guess_word_sense(trained_model, word, context):
 	word = nice_word(word)
 	topic_id = most_sim_topic(project(context))
 	likelihoods = []

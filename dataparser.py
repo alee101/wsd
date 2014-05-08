@@ -19,6 +19,10 @@ class DataInstance:
     def sentence_context(self):
         # Return the sentence in which the word being disambiguated appears
         return ' '.join(' '.join(self.sentence_context_list()).split())
+    def paragraph_context(self):
+        # Strip tags, newlines, and return the paragraph in which the word being disambiguated appears
+        paragraph = map(lambda p: re.sub(r'\[.*?\]|\n', ' ', p), self.context)
+        return ' '.join(' '.join(paragraph).split())
 
 # XML Parser
 class DataParser:
@@ -67,4 +71,3 @@ def parse_test_data(f_data):
             test_dict[word].append(DataInstance(instanceid, context))
 
     return test_dict
-    
