@@ -326,9 +326,9 @@ def guess_word_sense(trained_model, word, context):
     for sense in trained_model[word].keys():
         sense_vec = trained_model[word][sense]
         curr_cos_sim = cos_sim(topic_vec, sense_vec)
-        print sense
-        print sense_vec
-        print curr_cos_sim
+        #print sense
+        #print sense_vec
+        #print curr_cos_sim
         if curr_cos_sim > max_cosine:
             max_sense = sense
             max_cosine = curr_cos_sim
