@@ -17,6 +17,11 @@ from numpy.linalg import norm
 from nltk.corpus import brown  
 
 
+punctuation_list = [",", ".", ";", "\"", "'", "!", "?"]
+
+# makes words in nice format
+def nice_word(w):
+	return ''.join(c for c in w.lower() if c not in punctuation_list)
 # from swarthmore paper: 
 
 # The training data contains documents that each correspond to a specific semantic sense.
@@ -92,7 +97,7 @@ def topic_modeler():
 	for category in brown.categories(): 
 		category_map[category] = cat_num
 		for w in brown.words(categories=category):
-			w = w.lower() #lowercase everything
+			w = nice_word(w)
 			if w not in words:
 				words[w] = []
 				for i in range(1, cat_num):
@@ -191,7 +196,7 @@ def project(doc_str):
 	doc_vec = np.zeros(len(U_)).T
 	num_missing_words = 0
 	for w_ in doc: 
-		w = w_.lower() # make sure everything is lowercase
+		w = nice_word(w_)
 		if w in wd.keys(): # make sure word is in the set of known words
 			doc_vec[wd[w] -1] += 1
 		else: 
@@ -286,6 +291,9 @@ td2 = [("i like chasing rivers and running alongside banks", "bank", "wn_bank_1"
 # takes labled data from somewhere 
 # and turns it into format that train_model uses
 # (i.e. a list of (doc_str, w, sense))
+# ideally, doc_str contains a bunch of sentences spaced NORMALLY. 
+# WE WANT JUST INDIVIDUAL WORDS (punctuation allowed to be tagged on)
+# when we .split(" ") the sentence. 
 def make_training_data():
 	print "not implemented\n"
 	return td2 # for now
@@ -297,6 +305,7 @@ trained_model = train_model(make_training_data())
 # word is just a string
 # context is a string (i.e. a doc_str)
 def guess_word_sense(word, context):
+	word = nice_word(word)
 	topic_id = most_sim_topic(project(context))
 	likelihoods = []
 	for sense in trained_model[word].keys():

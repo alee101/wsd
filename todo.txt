@@ -5,7 +5,9 @@ Albert: figure testing stuff out
 (note: pywsd may or may not be helpful, look at it as you desire)
 (note: some methods from nltk -> wn should be useful) 
 
-handle_data.py: 
+NOTE: we might want to make our own corpuses to use in supervised_lsa.py. 
+      we would put these in the corpuses folder. s
+supervised_lsa.py: 
 
 LSA full method: write the full modified LSA method: that means building the matrix and performing SVD 
 
