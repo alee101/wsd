@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  8 MAY 2014 17:24
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  8 MAY 2014 17:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -138,24 +138,44 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
- [2] [3] (./paper.aux) ) 
+ [2]
+Overfull \hbox (0.88843pt too wide) in paragraph at lines 98--100
+[]\OT1/cmr/m/n/10 -- Non-Negative Ma-trix Fac-tor-iza-tion: An al-ter-na-tive t
+o us-ing SVD is NNMF,
+ []
+
+[3]
+Overfull \hbox (19.02853pt too wide) in paragraph at lines 159--164
+[]\OT1/cmr/m/n/10 Threshold $80%40%0%$ Cor-rectly iden-ti-fied $199518574$ To-t
+al iden-ti-fied $2538931136$
+ []
+
+
+Overfull \hbox (24.02855pt too wide) in paragraph at lines 167--172
+[]\OT1/cmr/m/n/10 Threshold $80%40%0%$ Cor-rectly iden-ti-fied $466808850$ To-t
+al iden-ti-fied $89816411826$
+ []
+
+[4] [5] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 976 strings out of 493481
- 11219 string characters out of 3140986
- 62840 words of memory out of 3000000
- 4323 multiletter control sequences out of 15000+200000
- 9496 words of font info for 36 fonts, out of 3000000 for 9000
+ 986 strings out of 493481
+ 11325 string characters out of 3140986
+ 64840 words of memory out of 3000000
+ 4331 multiletter control sequences out of 15000+200000
+ 11195 words of font info for 44 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 27i,6n,24p,241b,197s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr17.pfb>
-Output written on paper.pdf (3 pages, 64532 bytes).
+ 27i,6n,24p,486b,197s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi7.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr17.pfb>
+Output written on paper.pdf (5 pages, 91257 bytes).
 PDF statistics:
- 30 PDF objects out of 1000 (max. 8388607)
- 20 compressed objects within 1 object stream
+ 44 PDF objects out of 1000 (max. 8388607)
+ 30 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
