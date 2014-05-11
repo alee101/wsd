@@ -38,10 +38,8 @@
 	   for each sense j in W2
 	      calculate overlap of i and j in dictionary definitions
 	Maximize overlap i and j to determine the respective word senses of W1 and W2.
-	Semantic similarity:
-	calculate path between words in wordnet for each word sense with other words in the context
-	minimize total semantic path to select word sense
-	context can vary from one sentence to length of document
+	
+        Another knowledge-based algorithm is semantic similarity.  In order to calculate semantic similarity, calculate path between words in Wordnet for each possible word sense of the ambiguous word with other words in the context.  To select the correct word sense, minimize the total semantic path.  The context of the word depends, and can vary from one sentence to the length of the document.  Generally, only nouns are used to provide context. 
 	
 	\subsection{Unsupervised Corpus-based}
 	 Token-based discrimination: cluster contexts in which a given target word appears
