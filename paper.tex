@@ -121,8 +121,9 @@
 	 We detail the methods in the following sections. 
  	\subsection{Part-of-Speech}
  	\subsection{Semantic Knowledgebase}
-        Lesk
-        Semantic similarity
+        We attempted a couple of methods that were dictionary-based, but they yielded accuracy rates of <30\%, so we discarded them from the pipeline.
+        We used Lesk's algorithm on the brown corpus, with an implementation that was based upon a previous implementation in python: https://github.com/alvations/pywsd We used a basic form of Lesk's algorithm that calculated dictionary paths. We also tried variations that involved including the dictionary definitions of homonyms to try to improve our accuracy, but it didn't change our results very much.
+        We also semantic similarity methods on the brown corpus, using an implementation by the same author as Lesk's algorithm: https://github.com/alvations/pywsd  We tried all three methods: path similarity, Wu-Palmer, and Leacock-Chordorow's algorithm to see if they would yield high accuracy rates. However, each method was only accurate for certain words, but none of them could consistently identify the correct word sense.
 	\subsection{Supervised LSA}
 	Our approach uses simple LSA with a supervised learning component. 
 
