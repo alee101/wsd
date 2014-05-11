@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 16:48
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 16:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -146,13 +146,13 @@ Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
 
 [2]
-Overfull \hbox (9.805pt too wide) in paragraph at lines 96--97
+Overfull \hbox (9.805pt too wide) in paragraph at lines 94--95
 []\OT1/cmr/m/n/10 Van de Cruys et al (2011) [CI-TA-TION] ap-plies this ap-proac
 h to the SEMEVAL-
  []
 
 [3]
-Overfull \hbox (8.55618pt too wide) in paragraph at lines 122--125
+Overfull \hbox (8.55618pt too wide) in paragraph at lines 120--123
 \OT1/cmr/m/n/10 We tried all three meth-ods: path sim-i-lar-ity, Wu-Palmer, and
  Leacock-Chordorow's
  []
@@ -161,23 +161,20 @@ Overfull \hbox (8.55618pt too wide) in paragraph at lines 122--125
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 [5] [6]
-Overfull \hbox (66.41739pt too wide) in paragraph at lines 243--244
+Overfull \hbox (66.41739pt too wide) in paragraph at lines 241--242
 \OT1/cmr/m/n/10 tion Us-ing La-tent Se-man-tic Anal-y-sis Re-trieved from http:
 //www.sccs.swarthmore.edu/users/07
  []
 
 
-Overfull \hbox (100.54727pt too wide) in paragraph at lines 249--250
+Overfull \hbox (100.54727pt too wide) in paragraph at lines 247--248
 \OT1/cmr/m/n/10 Word Sense In-duc-tion and Dis-am-bigua-tion. Re-trieved from h
 ttp://aclweb.org/anthology//P/P11/P11-
  []
 
 
-Overfull \hbox (75.84729pt too wide) in paragraph at lines 251--252
+Overfull \hbox (75.84729pt too wide) in paragraph at lines 249--250
 \OT1/cmr/m/n/10 from http://www.ling.ohio-state. edu/ kbaker/pubs/Singular$[]$V
 alue$[]$Decomposition$[]$Tutorial.pdf. 
  []
@@ -185,7 +182,7 @@ alue$[]$Decomposition$[]$Tutorial.pdf.
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
-[7] (./paper.aux) ) 
+[7] [8] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
  994 strings out of 493481
  11418 string characters out of 3140986
@@ -193,22 +190,22 @@ Here is how much of TeX's memory you used:
  4336 multiletter control sequences out of 15000+200000
  12547 words of font info for 48 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 27i,8n,24p,486b,197s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmbx10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi7.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r17.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
-.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
-pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.p
-fb>
-Output written on paper.pdf (7 pages, 139429 bytes).
+ 27i,8n,24p,486b,238s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmbx10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmmi7.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr17.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr7.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
+10.pfb>
+Output written on paper.pdf (8 pages, 139849 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
- 48 compressed objects within 1 object stream
+ 71 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
