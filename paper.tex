@@ -75,7 +75,7 @@
 
 	It is worth noting that other similar approaches exist in recent years that are probably more powerful (but more difficult to implement). We detail them in the next sections. 
 
-	\subsubsection{Probabilistic LSA}: 
+	\subsubsection{Probabilistic LSA}
 	Formulated as early as 1999 in a paper by Hofmann [CITATION], this approach is based on mixture decomposition from latent class model. It uses a probabilistic model known as an aspect model, which is a latent variable model for co-occurrence data. It introduces a conditional dependence assumption, namely that the document random variable and the word random variable are independent conditioned on the state of the associated latent variable. 
 	
 	The Expectation Maximization (EM) algorithm is used for maximum likelihood estimation, as is standard procedure for latent variable models. This paper also introduces the notion of continuous latent space, produced by smoothing the discrete distribution due to the representation as a multinomial distribution
@@ -104,11 +104,17 @@
 	brown corpus
 
 	\section{Algorithms}
-	 Part of speech tagging and bigram models
- 	 Use for subset of data that has high predictability
- 	 Supervised LSA for the rest of the data
 
- 	 Other methods had low accuracy 
+	 We implemented a pipeline each with a different type of algorithm in order to do 
+	 word sense disambiguation. The first step is a part-of-speech tagging step that uses
+	 bigram models in order to determine what the usual part of speech is in a certain location. 
+	 We use this approach for a subset of data that has high predictability. 
+
+	 Previously, we had a step involving semantic knowledge approaches, but this had low accuracy and we discarded it from the pipeline. We still detail the methods below. 
+
+ 	 For the rest of the data, we applied supervised LSA, a novel implementation of the simple LSA algorithm with some ideas drawn from more sophisticated LSA approaches. 
+
+ 	 We detail them in the following sections.  
  	\subsection{Part-of-Speech}
  	\subsection{Semantic Knowledge base}
         We attempted a couple of methods that were dictionary-based, but they yielded accuracy rates of $ < 30\%$, so we discarded them from the pipeline.
@@ -235,7 +241,7 @@
 
 	10. R. Navigli. Word Sense Disambiguation: a Survey. ACM Computing Surveys, 41(2), ACM Press, 2009, pp. 1-69. [A complete State of the Art in Word Sense Disambiguation]
 
-        11. Liling Tan. 2014. Pywsd: Python Implementations of Word Sense Disambiguation (WSD) Technologies [software]. Retrieved from https://github.com/alvations/pywsd
+    11. Liling Tan. 2014. Pywsd: Python Implementations of Word Sense Disambiguation (WSD) Technologies [software]. Retrieved from https://github.com/alvations/pywsd. 
 
 	\section{Code}
 

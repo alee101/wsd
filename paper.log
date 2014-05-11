@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 17:18
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 17:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -149,19 +149,19 @@ h to the SEMEVAL-
  []
 
 
-Overfull \hbox (47.86198pt too wide) in paragraph at lines 116--117
+Overfull \hbox (47.86198pt too wide) in paragraph at lines 122--123
 \OT1/cmr/m/n/10 was based upon a pre-vi-ous im-ple-men-ta-tion in python: https
 ://github.com/alvations/pywsd
  []
 
 
-Overfull \hbox (34.19527pt too wide) in paragraph at lines 118--119
+Overfull \hbox (34.19527pt too wide) in paragraph at lines 124--125
 \OT1/cmr/m/n/10 men-ta-tion by the same au-thor as Lesk's al-go-rithm: https://
 github.com/alvations/pywsd
  []
 
 
-Overfull \hbox (8.55618pt too wide) in paragraph at lines 118--119
+Overfull \hbox (8.55618pt too wide) in paragraph at lines 124--125
 \OT1/cmr/m/n/10 We tried all three meth-ods: path sim-i-lar-ity, Wu-Palmer, and
  Leacock-Chordorow's
  []
@@ -170,28 +170,31 @@ Overfull \hbox (8.55618pt too wide) in paragraph at lines 118--119
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [5] [6]
-Overfull \hbox (66.41739pt too wide) in paragraph at lines 224--225
+Overfull \hbox (66.41739pt too wide) in paragraph at lines 230--231
 \OT1/cmr/m/n/10 tion Us-ing La-tent Se-man-tic Anal-y-sis Re-trieved from http:
 //www.sccs.swarthmore.edu/users/07
  []
 
 
-Overfull \hbox (100.54727pt too wide) in paragraph at lines 230--231
+Overfull \hbox (100.54727pt too wide) in paragraph at lines 236--237
 \OT1/cmr/m/n/10 Word Sense In-duc-tion and Dis-am-bigua-tion. Re-trieved from h
 ttp://aclweb.org/anthology//P/P11/P11-
  []
 
 
-Overfull \hbox (75.84729pt too wide) in paragraph at lines 232--233
+Overfull \hbox (75.84729pt too wide) in paragraph at lines 238--239
 \OT1/cmr/m/n/10 from http://www.ling.ohio-state. edu/ kbaker/pubs/Singular$[]$V
 alue$[]$Decomposition$[]$Tutorial.pdf. 
  []
 
 
-Overfull \hbox (76.93497pt too wide) in paragraph at lines 238--239
+Overfull \hbox (79.71275pt too wide) in paragraph at lines 244--245
 \OT1/cmr/m/n/10 am-bigua-tion (WSD) Tech-nolo-gies [soft-ware]. Re-trieved from
- https://github.com/alvations/pywsd 
+ https://github.com/alvations/pywsd. 
  []
 
 [7] (./paper.aux) ) 
@@ -214,7 +217,7 @@ r17.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
 .pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
 pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.p
 fb>
-Output written on paper.pdf (7 pages, 139227 bytes).
+Output written on paper.pdf (7 pages, 139541 bytes).
 PDF statistics:
  68 PDF objects out of 1000 (max. 8388607)
  48 compressed objects within 1 object stream
