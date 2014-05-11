@@ -32,12 +32,12 @@
         The past word sense disambiguation methods fall into three main categories: knowledge-based, unsupervised corpus-based, and supervised corpus-based methods.
 
 	\subsection{Knowledge-based}
-	Lesk's algorithm:
-	two words W1 and W2 with multiple word senses
+
+        One widely used knowledge-based algorithm is Lesk's algorithm.  Given that there are two words W1 and W2 with multiple word senses.
 	for each sense i in W1
-	for each sense j in W2
-	calculate overlap of i and j in dictionary definitions
-	maximize overlap i and j to determine word senses
+	   for each sense j in W2
+	      calculate overlap of i and j in dictionary definitions
+	Maximize overlap i and j to determine the respective word senses of W1 and W2.
 	Semantic similarity:
 	calculate path between words in wordnet for each word sense with other words in the context
 	minimize total semantic path to select word sense
