@@ -131,20 +131,32 @@
 	\subsection{Supervised LSA}
 	Our approach uses simple LSA with a supervised learning component. 
 
-	1) Build term-document matrix 
-		a) terms are words in Brown Corpus and in training data
-		b) documents are categories of Brown, and concatenated paragraphs of training data with same word sense for ambiguous word
-	2) Apply SVD to get $U$, $D$, $V^T$.
+	The steps are as follows: 
 
-	Supervised part: 
-	3) For each (paragraph, ambiguous word, word sense) tuple in the training data:
-		a) create vector in the term-document space
-		b) fold this vector into the reduced semantic space of V
-		c) use cosine similarity to come up with the eigentopic most associated with the paragraph. 
+	\begin{enumerate}
+
+	\item Build term-document matrix 
+		\begin{enumerate}
+		\item terms are words in Brown Corpus and in training data
+		\item documents are categories of Brown, and concatenated paragraphs of training data with same word sense for ambiguous word
+		\end{enumerate}
+	\item Apply SVD to get $U$, $D$, $V^T$.
+
+	Then we have the supervised aspect of the LSA.  
+	\item For each (paragraph, ambiguous word, word sense) tuple in the training data:
+		\begin{enumerate}
+		\item create vector in the term-document space
+		\item fold this vector into the reduced semantic space of V
+		\item use cosine similarity to come up with the eigentopic most associated with the paragraph.
+		\end{enumerate} 
 	Then, we have built an association between each word sense and an eigentopic vector in V. 
-	4) For each (paragraph, ambiguous word) in testing data:
-		a) come up with the eigentopic vector associated
-		b) For that eigentopic vector, there is a probability for each word sense for a given word -- we pick the highest probability word sense for the word we are disambiguating
+	\item For each (paragraph, ambiguous word) in testing data:
+		\begin{enumerate}
+		\item come up with the eigentopic vector associated
+		\item For that eigentopic vector, there is a probability for each word sense for a given word -- we pick the highest probability word sense for the word we are disambiguating
+		\end{enumerate}
+
+	\end{enumerate}
 
 	In other words, for a given eigentopic, we will always pick the same word sense for a given word. This approach has its flaws.
 

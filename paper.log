@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 15:42
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 15:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -148,20 +148,23 @@ o us-ing SVD is NNMF,
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [4] [5]
-Overfull \hbox (66.41739pt too wide) in paragraph at lines 236--237
+Overfull \hbox (66.41739pt too wide) in paragraph at lines 248--249
 \OT1/cmr/m/n/10 tion Us-ing La-tent Se-man-tic Anal-y-sis Re-trieved from http:
 //www.sccs.swarthmore.edu/users/07
  []
 
 
-Overfull \hbox (100.54727pt too wide) in paragraph at lines 242--243
+Overfull \hbox (100.54727pt too wide) in paragraph at lines 254--255
 \OT1/cmr/m/n/10 Word Sense In-duc-tion and Dis-am-bigua-tion. Re-trieved from h
 ttp://aclweb.org/anthology//P/P11/P11-
  []
 
 
-Overfull \hbox (75.84729pt too wide) in paragraph at lines 244--245
+Overfull \hbox (75.84729pt too wide) in paragraph at lines 256--257
 \OT1/cmr/m/n/10 from http://www.ling.ohio-state. edu/ kbaker/pubs/Singular$[]$V
 alue$[]$Decomposition$[]$Tutorial.pdf. 
  []
@@ -170,11 +173,11 @@ alue$[]$Decomposition$[]$Tutorial.pdf.
 Here is how much of TeX's memory you used:
  992 strings out of 493481
  11397 string characters out of 3140986
- 66840 words of memory out of 3000000
+ 67840 words of memory out of 3000000
  4335 multiletter control sequences out of 15000+200000
  12239 words of font info for 47 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 27i,8n,24p,486b,197s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,8n,24p,486b,248s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmmi10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
@@ -184,7 +187,7 @@ cm/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm
 mr17.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 10.pfb>
-Output written on paper.pdf (6 pages, 110013 bytes).
+Output written on paper.pdf (6 pages, 109969 bytes).
 PDF statistics:
  55 PDF objects out of 1000 (max. 8388607)
  38 compressed objects within 1 object stream
