@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 16:54
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 16:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -145,36 +145,44 @@ Overfull \hbox (3.83394pt too wide) in paragraph at lines 32--33
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
 
-[2]
-Overfull \hbox (9.805pt too wide) in paragraph at lines 94--95
+[2] [3]
+Overfull \hbox (9.805pt too wide) in paragraph at lines 98--99
 []\OT1/cmr/m/n/10 Van de Cruys et al (2011) [CI-TA-TION] ap-plies this ap-proac
 h to the SEMEVAL-
  []
 
-[3]
-Overfull \hbox (8.55618pt too wide) in paragraph at lines 120--123
+
+Overfull \hbox (47.86198pt too wide) in paragraph at lines 126--127
+\OT1/cmr/m/n/10 was based upon a pre-vi-ous im-ple-men-ta-tion in python: https
+://github.com/alvations/pywsd
+ []
+
+
+Overfull \hbox (34.19527pt too wide) in paragraph at lines 128--129
+\OT1/cmr/m/n/10 men-ta-tion by the same au-thor as Lesk's al-go-rithm: https://
+github.com/alvations/pywsd
+ []
+
+
+Overfull \hbox (8.55618pt too wide) in paragraph at lines 128--129
 \OT1/cmr/m/n/10 We tried all three meth-ods: path sim-i-lar-ity, Wu-Palmer, and
  Leacock-Chordorow's
  []
 
-[4]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[5] [6]
-Overfull \hbox (66.41739pt too wide) in paragraph at lines 241--242
+[4] [5] [6]
+Overfull \hbox (66.41739pt too wide) in paragraph at lines 247--248
 \OT1/cmr/m/n/10 tion Us-ing La-tent Se-man-tic Anal-y-sis Re-trieved from http:
 //www.sccs.swarthmore.edu/users/07
  []
 
 
-Overfull \hbox (100.54727pt too wide) in paragraph at lines 247--248
+Overfull \hbox (100.54727pt too wide) in paragraph at lines 253--254
 \OT1/cmr/m/n/10 Word Sense In-duc-tion and Dis-am-bigua-tion. Re-trieved from h
 ttp://aclweb.org/anthology//P/P11/P11-
  []
 
 
-Overfull \hbox (75.84729pt too wide) in paragraph at lines 249--250
+Overfull \hbox (75.84729pt too wide) in paragraph at lines 255--256
 \OT1/cmr/m/n/10 from http://www.ling.ohio-state. edu/ kbaker/pubs/Singular$[]$V
 alue$[]$Decomposition$[]$Tutorial.pdf. 
  []
@@ -183,7 +191,7 @@ Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
 [7]
-Overfull \hbox (76.93497pt too wide) in paragraph at lines 259--260
+Overfull \hbox (76.93497pt too wide) in paragraph at lines 265--266
 \OT1/cmr/m/n/10 am-bigua-tion (WSD) Tech-nolo-gies [soft-ware]. Re-trieved from
  https://github.com/alvations/pywsd 
  []
@@ -196,7 +204,7 @@ Here is how much of TeX's memory you used:
  4336 multiletter control sequences out of 15000+200000
  12547 words of font info for 48 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 27i,8n,24p,486b,238s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,8n,24p,486b,197s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmbx10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
@@ -208,7 +216,7 @@ r17.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
 .pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
 pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.p
 fb>
-Output written on paper.pdf (8 pages, 140031 bytes).
+Output written on paper.pdf (8 pages, 140019 bytes).
 PDF statistics:
  71 PDF objects out of 1000 (max. 8388607)
  50 compressed objects within 1 object stream
