@@ -89,13 +89,16 @@
 
 	(Katz et al) first applied LSA to WSD in an unsupervised approach by folding new documents with ambiguous word into the semantic space created by the SVD of the term-document matrix, and then used cosine-based clustering. We do a supervised implementation of this approach. 
 
-	It is worth noting that other similar approaches exist in recent years that are probably more powerful (but more difficult to implement). We detail them in the next slide. 
+	It is worth noting that other similar approaches exist in recent years that are probably more powerful (but more difficult to implement). We detail them in the following sections. 
 
-	-- Probabilistic LSA: Formulated as early as 1999, this approach is based on mixture decomposition from latent class model. 
+	\subsubsection{Probabilistic LSA}
+
+	-- Formulated as early as 1999, this approach is based on mixture decomposition from latent class model. 
 	(this is a latent variable model for co-occurrence data)
 	Model fitting is done with Expectation Maximization (EM).
 
-	-- Non-Negative Matrix Factorization: An alternative to using SVD is NNMF, which is a matrix factoring technique introduced by Lee and Seung  (2000).  Van de Cruys (2011) makes use of this technique:
+	\subsubsection{Non-Negative Matrix Factorization}
+	-- An alternative to using SVD is NNMF, which is a matrix factoring technique introduced by Lee and Seung  (2000).  Van de Cruys (2011) makes use of this technique:
 	-- minimize Kullback-Leibler divergence instead of Euclidean distance
 
 	-- minimizing Kullback-Leibler divergence is better, since minimizing Euclidean distance makes the normal distribution assumption for language -- language is not Gaussian.
@@ -202,7 +205,7 @@
 	"Before he lost his money he had the good sense to commission John Soane to design the Campden Hill Square house." (a general conscious awareness)
 
 	\subsection{Supervised LSA}
-	
+
 	a) With only the Brown Corpus categories as column vectors ($15$ column vectors -> reduced to $9$) in the term-document matrix: ~ $42\%$
 	b) With the Brown Corpus categories + the word-sense categories (in total, 861 column vectors -> reduced to $140$ column vectors after SVD): ~ $38\%$
 	-- highly dependent on the training data -- different results for different words, some words had lower percentages, some had higher percentages (as low as $7\%$, as high as $61\%$)
