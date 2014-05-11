@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 17:44
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 17:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -143,47 +143,40 @@ Overfull \hbox (3.83394pt too wide) in paragraph at lines 32--33
 
 {/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 [2] [3]
-Overfull \hbox (9.805pt too wide) in paragraph at lines 94--95
+Overfull \hbox (9.805pt too wide) in paragraph at lines 96--97
 []\OT1/cmr/m/n/10 Van de Cruys et al (2011) [CI-TA-TION] ap-plies this ap-proac
 h to the SEMEVAL-
  []
 
-[4]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[5] [6]
-Overfull \hbox (66.41739pt too wide) in paragraph at lines 230--231
+[4] [5] [6]
+Overfull \hbox (66.41739pt too wide) in paragraph at lines 245--246
 \OT1/cmr/m/n/10 tion Us-ing La-tent Se-man-tic Anal-y-sis Re-trieved from http:
 //www.sccs.swarthmore.edu/users/07
  []
 
 
-Overfull \hbox (100.54727pt too wide) in paragraph at lines 236--237
+Overfull \hbox (100.54727pt too wide) in paragraph at lines 251--252
 \OT1/cmr/m/n/10 Word Sense In-duc-tion and Dis-am-bigua-tion. Re-trieved from h
 ttp://aclweb.org/anthology//P/P11/P11-
  []
 
-
-Overfull \hbox (75.84729pt too wide) in paragraph at lines 238--239
+[7]
+Overfull \hbox (75.84729pt too wide) in paragraph at lines 253--254
 \OT1/cmr/m/n/10 from http://www.ling.ohio-state. edu/ kbaker/pubs/Singular$[]$V
 alue$[]$Decomposition$[]$Tutorial.pdf. 
  []
 
 
-Overfull \hbox (79.71275pt too wide) in paragraph at lines 244--245
+Overfull \hbox (79.71275pt too wide) in paragraph at lines 259--260
 \OT1/cmr/m/n/10 am-bigua-tion (WSD) Tech-nolo-gies [soft-ware]. Re-trieved from
  https://github.com/alvations/pywsd. 
  []
 
-[7] (./paper.aux) ) 
+[8] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
  994 strings out of 493481
  11418 string characters out of 3140986
- 66840 words of memory out of 3000000
+ 65840 words of memory out of 3000000
  4336 multiletter control sequences out of 15000+200000
  12547 words of font info for 48 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -199,10 +192,10 @@ r17.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
 .pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
 pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.p
 fb>
-Output written on paper.pdf (7 pages, 139523 bytes).
+Output written on paper.pdf (8 pages, 139833 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
- 48 compressed objects within 1 object stream
+ 71 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
