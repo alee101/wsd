@@ -119,7 +119,7 @@
  	\subsection{Part-of-Speech}
  	\subsection{Semantic Knowledgebase}
         We attempted a couple of methods that were dictionary-based, but they yielded accuracy rates of <30\%, so we discarded them from the pipeline.
-        Lesk
+        We used Lesk's algorithm on the brown corpus, with an implementation that was based upon a previous implementation in python: https://github.com/alvations/pywsd We used a basic form of Lesk's algorithm that calculated dictionary paths.
         Semantic similarity
 	\subsection{Supervised LSA}
 	Our approach uses simple LSA with a supervised learning component. 
