@@ -155,32 +155,28 @@
 
 	\subsection{POS Bigram Model}
 
-	Table Example: 
-    \begin{tabular} {l | c}
-	 \hline
-		Logical Formula & Program Type \\ \hline
-		Implication & Function type $A \rightarrow B$\\ Proof of: & Function \\ \hline
-		Conjunction & Pair type $A * B$ \\ Proof of: &  $(e_1, e_2)$ \\ \hline
-		True & Unit \\ Proof of: &  $()$ \\ \hline
-		False & Void \\ Proof of: & abort, failwith \\ \hline
-		Disjunction & sumtype \\ Proof of: & tagged value \\ \hline
-	 \end{tabular}
-
-	POS Bigram Model (w/frequency count > 3)
-
-	Threshold	$80\%	40\%	0\%$
-	Correctly identified	$199	518	574$
-	Total identified	$253	893	1136$
-	$\%$ Accuracy	$78.7\%	58.0\%	50.5\%$
-	$\%$ Coverage	$5.8\%	20.6\%	26.2\%$
-
-	POS Bigram Model (w/frequency count > 0)
-
-	Threshold	$80\%	40\%	0\%$
-	Correctly identified	$466	808	850$
-	Total identified	$898	1641	1826$
-	$\%$ Accuracy	$51.9\%	49.2\%	46.5\%$
-	$\%$ Coverage	$20.7\%	38.7\%	42.2\%$
+	POS Bigram Model (w/frequency count $>$ 3): 
+	\begin{table}[h]
+	\begin{tabular}{|l|l|l|l|}
+	\hline
+	Threshold            & 80\%   & 40\%   & 0\%    \\ \hline
+	Correctly identified & 199    & 518    & 574    \\ \hline
+	Total identified     & 253    & 893    & 1136   \\ \hline
+	\% Accuracy          & 78.7\% & 58.0\% & 50.5\% \\ \hline
+	\% Coverage			 & 5.8\%  & 20.6\% & 26.2\% \\ \hline
+	\end{tabular}
+	\end{table}\\
+	POS Bigram Model (w/frequency count $>$ 0)
+	\begin{table}[h]
+	\begin{tabular}{|l|l|l|l|}
+	\hline
+	Threshold            & 80\%   & 40\%   & 0\%    \\ \hline
+	Correctly identified & 466    & 808    & 850    \\ \hline
+	Total identified     & 898    & 1641   & 1826   \\ \hline
+	\% Accuracy          & 51.9\% & 49.2\% & 46.5\% \\ \hline
+	\% Coverage          & 20.7\% & 38.7\% & 42.2\% \\ \hline
+	\end{tabular}
+	\end{table}
 
 	Correctly disambiguates:
 	"Marketing too, in its strictest sense, is outside our remit. " (the way in which a word or expression or situation can be interpreted)	
