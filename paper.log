@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  8 MAY 2014 18:31
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 14:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -145,18 +145,18 @@ o us-ing SVD is NNMF,
  []
 
 [3]
-Overfull \hbox (19.02853pt too wide) in paragraph at lines 159--164
+Overfull \hbox (19.02853pt too wide) in paragraph at lines 171--176
 []\OT1/cmr/m/n/10 Threshold $80%40%0%$ Cor-rectly iden-ti-fied $199518574$ To-t
 al iden-ti-fied $2538931136$
  []
 
 
-Overfull \hbox (24.02855pt too wide) in paragraph at lines 167--172
+Overfull \hbox (24.02855pt too wide) in paragraph at lines 179--184
 []\OT1/cmr/m/n/10 Threshold $80%40%0%$ Cor-rectly iden-ti-fied $466808850$ To-t
 al iden-ti-fied $89816411826$
  []
 
-[4] [5] (./paper.aux) ) 
+[4] [5] [6] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
  986 strings out of 493481
  11325 string characters out of 3140986
@@ -164,18 +164,20 @@ Here is how much of TeX's memory you used:
  4331 multiletter control sequences out of 15000+200000
  11195 words of font info for 44 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 27i,6n,24p,486b,197s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmmi7.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr17.pfb>
-Output written on paper.pdf (5 pages, 91396 bytes).
+ 27i,7n,24p,486b,197s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2012/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr17.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr7.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb>
+Output written on paper.pdf (6 pages, 107656 bytes).
 PDF statistics:
- 44 PDF objects out of 1000 (max. 8388607)
- 30 compressed objects within 1 object stream
+ 55 PDF objects out of 1000 (max. 8388607)
+ 38 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -154,6 +154,18 @@
 	Best unsupervised approach: 40$\%$
 
 	\subsection{POS Bigram Model}
+
+	Table Example: 
+    \begin{tabular} {l | c}
+	 \hline
+		Logical Formula & Program Type \\ \hline
+		Implication & Function type $A \rightarrow B$\\ Proof of: & Function \\ \hline
+		Conjunction & Pair type $A * B$ \\ Proof of: &  $(e_1, e_2)$ \\ \hline
+		True & Unit \\ Proof of: &  $()$ \\ \hline
+		False & Void \\ Proof of: & abort, failwith \\ \hline
+		Disjunction & sumtype \\ Proof of: & tagged value \\ \hline
+	 \end{tabular}
+
 	POS Bigram Model (w/frequency count > 3)
 
 	Threshold	$80\%	40\%	0\%$
