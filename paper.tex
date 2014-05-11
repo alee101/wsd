@@ -17,8 +17,8 @@
 	\section{Introduction}
 	\subsection{Problem Statement}
 	Word sense disambiguation is the process of identifying the meaning of a word in its context when an individual word may take on many meanings.
-	It remains one of the oldest open problems in computational lingusitics and is widely considered to be AI-Complete, 
-	or as hard as the problem of making computers as intelligent as people.$^1$ Being able to accurately disambiguate word senses would greatly
+	It remains one of the oldest open problems in computational linguistics and is widely considered to be AI-Complete, 
+	or as hard as the problem of making computers as intelligent as people.$^1$ [CITATION] Being able to accurately disambiguate word senses would greatly
 	assist Machine Translation, semantic analysis, and would have significant impact in computational linguistics. However, fine-grained senses
 	in which a word has multiple closely related meanings remains one of the largest challenges in word sense disambiguation. Consider the following
 	example of disambiguating the sense of the word {\emph {art}} from the Senseval-2 competition held in 2001:
@@ -109,6 +109,9 @@
  	 Other methods had low accuracy 
  	\subsection{Part-of-Speech}
  	\subsection{Semantic Knowledgebase}
+        We attempted a couple of methods that were dictionary-based, but they yielded accuracy rates of <30\%, so we discarded them from the pipeline.
+        Lesk
+        Semantic similarity
 	\subsection{Supervised LSA}
 	Our approach uses simple LSA with a supervised learning component. 
 
@@ -224,6 +227,13 @@
 
 	6. Kirk Baker. 2013. Singular Value Decomposition Tutorial. Retrieved from http://www.ling.ohio-state. edu/~kbaker/pubs/Singular$\_$Value$\_$Decomposition$\_$Tutorial.pdf. 
 
+	8. Princeton University "About WordNet." WordNet. Princeton University. 2010. http://wordnet.princeton.edu. 
+
+	10. R. Navigli. Word Sense Disambiguation: a Survey. ACM Computing Surveys, 41(2), ACM Press, 2009, pp. 1-69. [A complete State of the Art in Word Sense Disambiguation]
+
+	\section{Code}
+
+	The code we used in this paper is available at https://github.com/alee101/wsd. 
 
 
  
