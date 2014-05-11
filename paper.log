@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 16:36
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 16:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -144,20 +144,33 @@ Overfull \hbox (9.805pt too wide) in paragraph at lines 98--99
 h to the SEMEVAL-
  []
 
-[3] [4] [5] [6]
-Overfull \hbox (66.41739pt too wide) in paragraph at lines 244--245
+[3]
+Overfull \hbox (8.55618pt too wide) in paragraph at lines 124--127
+\OT1/cmr/m/n/10 We tried all three meth-ods: path sim-i-lar-ity, Wu-Palmer, and
+ Leacock-Chordorow's
+ []
+
+[4]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5] [6]
+Overfull \hbox (66.41739pt too wide) in paragraph at lines 245--246
 \OT1/cmr/m/n/10 tion Us-ing La-tent Se-man-tic Anal-y-sis Re-trieved from http:
 //www.sccs.swarthmore.edu/users/07
  []
 
 
-Overfull \hbox (100.54727pt too wide) in paragraph at lines 250--251
+Overfull \hbox (100.54727pt too wide) in paragraph at lines 251--252
 \OT1/cmr/m/n/10 Word Sense In-duc-tion and Dis-am-bigua-tion. Re-trieved from h
 ttp://aclweb.org/anthology//P/P11/P11-
  []
 
 
-Overfull \hbox (75.84729pt too wide) in paragraph at lines 252--253
+Overfull \hbox (75.84729pt too wide) in paragraph at lines 253--254
 \OT1/cmr/m/n/10 from http://www.ling.ohio-state. edu/ kbaker/pubs/Singular$[]$V
 alue$[]$Decomposition$[]$Tutorial.pdf. 
  []
@@ -169,11 +182,11 @@ Missing character: There is no ™ in font cmr10!
 Here is how much of TeX's memory you used:
  994 strings out of 493481
  11418 string characters out of 3140986
- 65840 words of memory out of 3000000
+ 67840 words of memory out of 3000000
  4336 multiletter control sequences out of 15000+200000
  12547 words of font info for 48 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 27i,8n,24p,486b,240s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,8n,24p,486b,197s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmbx10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
@@ -185,7 +198,7 @@ r17.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
 .pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
 pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.p
 fb>
-Output written on paper.pdf (7 pages, 138349 bytes).
+Output written on paper.pdf (7 pages, 139243 bytes).
 PDF statistics:
  68 PDF objects out of 1000 (max. 8388607)
  48 compressed objects within 1 object stream
