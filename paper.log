@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 17:24
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 17:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -148,24 +148,6 @@ Overfull \hbox (9.805pt too wide) in paragraph at lines 94--95
 h to the SEMEVAL-
  []
 
-
-Overfull \hbox (47.86198pt too wide) in paragraph at lines 122--123
-\OT1/cmr/m/n/10 was based upon a pre-vi-ous im-ple-men-ta-tion in python: https
-://github.com/alvations/pywsd
- []
-
-
-Overfull \hbox (34.19527pt too wide) in paragraph at lines 124--125
-\OT1/cmr/m/n/10 men-ta-tion by the same au-thor as Lesk's al-go-rithm: https://
-github.com/alvations/pywsd
- []
-
-
-Overfull \hbox (8.55618pt too wide) in paragraph at lines 124--125
-\OT1/cmr/m/n/10 We tried all three meth-ods: path sim-i-lar-ity, Wu-Palmer, and
- Leacock-Chordorow's
- []
-
 [4]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -217,7 +199,7 @@ r17.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
 .pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
 pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.p
 fb>
-Output written on paper.pdf (7 pages, 139541 bytes).
+Output written on paper.pdf (7 pages, 139523 bytes).
 PDF statistics:
  68 PDF objects out of 1000 (max. 8388607)
  48 compressed objects within 1 object stream
