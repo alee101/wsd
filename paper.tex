@@ -71,11 +71,11 @@
 
 	Originally, the LSA approach was primarily intended to remove uninformative singular values, and then reconstruct the term-document matrix (Landauer et al 1998).  The idea there was to compare documents to see how similar they were to each other with noise removed. Part of their motivation was to see if co-occurrence representations was in fact how humans represented meaning themselves.
 
-	(Katz et al) first applied LSA to WSD in an unsupervised approach by folding new documents with ambiguous word into the semantic space created by the SVD of the term-document matrix, and then used cosine-based clustering. We do a supervised implementation of this approach. 
+	(Katz et al) [CITATION] first applied LSA to WSD in an unsupervised approach by folding new documents with ambiguous word into the semantic space created by the SVD of the term-document matrix, and then used cosine-based clustering. We do a supervised implementation of this approach. 
 
-	It is worth noting that other similar approaches exist in recent years that are probably more powerful (but more difficult to implement). We detail them in the next slide. 
+	It is worth noting that other similar approaches exist in recent years that are probably more powerful (but more difficult to implement). We detail them in the next sections. 
 
-	-- Probabilistic LSA: Formulated as early as 1999, this approach is based on mixture decomposition from latent class model. 
+	\subsubsection{Probabilistic LSA}: 
 	Formulated as early as 1999 in a paper by Hofmann [CITATION], this approach is based on mixture decomposition from latent class model. It uses a probabilistic model known as an aspect model, which is a latent variable model for co-occurrence data. It introduces a conditional dependence assumption, namely that the document random variable and the word random variable are independent conditioned on the state of the associated latent variable. 
 	
 	The Expectation Maximization (EM) algorithm is used for maximum likelihood estimation, as is standard procedure for latent variable models. This paper also introduces the notion of continuous latent space, produced by smoothing the discrete distribution due to the representation as a multinomial distribution
