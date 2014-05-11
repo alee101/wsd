@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 15:49
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.4.19)  11 MAY 2014 15:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -152,19 +152,19 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [4] [5]
-Overfull \hbox (66.41739pt too wide) in paragraph at lines 248--249
+Overfull \hbox (66.41739pt too wide) in paragraph at lines 249--250
 \OT1/cmr/m/n/10 tion Us-ing La-tent Se-man-tic Anal-y-sis Re-trieved from http:
 //www.sccs.swarthmore.edu/users/07
  []
 
 
-Overfull \hbox (100.54727pt too wide) in paragraph at lines 254--255
+Overfull \hbox (100.54727pt too wide) in paragraph at lines 255--256
 \OT1/cmr/m/n/10 Word Sense In-duc-tion and Dis-am-bigua-tion. Re-trieved from h
 ttp://aclweb.org/anthology//P/P11/P11-
  []
 
 
-Overfull \hbox (75.84729pt too wide) in paragraph at lines 256--257
+Overfull \hbox (75.84729pt too wide) in paragraph at lines 257--258
 \OT1/cmr/m/n/10 from http://www.ling.ohio-state. edu/ kbaker/pubs/Singular$[]$V
 alue$[]$Decomposition$[]$Tutorial.pdf. 
  []
@@ -187,7 +187,7 @@ cm/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm
 mr17.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 10.pfb>
-Output written on paper.pdf (6 pages, 109969 bytes).
+Output written on paper.pdf (6 pages, 109965 bytes).
 PDF statistics:
  55 PDF objects out of 1000 (max. 8388607)
  38 compressed objects within 1 object stream
