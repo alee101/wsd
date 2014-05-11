@@ -46,17 +46,14 @@
 	context can vary from one sentence to length of document
 	
 	\subsection{Unsupervised Corpus-based}
-	 Token-based discrimination: cluster contexts in which a given target word appears
-	 Cluster 1: The line was occupied. 
-	 The operator came into the line abruptly.
-
-	 Cluster 2: The line was really long and it took forever to be served. 
- 	 I stood in the queue for about 10 minutes
-
- 	 Use parallel corpus across language to infer sense distinctions across the language
-	 Je vais prendre ma propre décision.
-	 vs.
-	 Je vais prendre ma propre voiture.
+	One of the challenges with word sense disambiguation is the scarcity of accurately sense-tagged text, which such datasets usually needing
+	to be manually built by humans. Unsupervied approaches to word sense disambiguation attempt to overcome the bottleneck of acquiring sense-tagged
+	text by operating on untagged corpora and clustering based on either context or word. Clustering by Committee (CBC) [CITATION] is an example of
+	such an approach, formulated by Lin and Pantel in 2002, in which given a target word, clusters of similar words will be output. CBC is a
+	three step algorithm starting first with the construction of a co-occurrence matrix containing measures of the similarity between each word,
+	followed by clustering the most similar elements from this co-occrrence matrix using average link clustering to form the committees, with each
+	target word then being assigned to its most similar committee in the final step.
+	
 	\subsection{Supervised Corpus-based}
 	 Use annotated corpus to build model
  	 ex. to know: 1) be aware of piece of information
