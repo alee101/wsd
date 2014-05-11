@@ -81,13 +81,13 @@
 	 Use context of how word usually appears (bigram/trigram models)
  	 if (feature) then word sense
  	\subsection{LSA -- Past Efforts}
- 	LSA was one of the first approaches to make use of the co-occurrence model for word meaning. The idea, as implemented in the famous 1998 paper by Landauer, is that given a set of corpuses, we build a term-document matrix where words are on the rows and documents are on the columns, and the frequencies are in the corresponding cells.
+ 	LSA was one of the first approaches to make use of the co-occurrence model for word meaning. The idea, as implemented in the famous 1998 paper by Landauer [CITATION], is that given a set of corpuses, we build a term-document matrix where words are on the rows and documents are on the columns, and the frequencies are in the corresponding cells.
 	Then we apply SVD to this matrix. 
 	This approach is essentially unsupervised because it relies on clustering (word co-occurrence matrix) to derive similarities between documents and words. 
 
-	Originally, the LSA approach was primarily intended to remove uninformative singular values, and then reconstruct the term-document matrix (Landauer et al 1998).  The idea there was to compare documents to see how similar they were to each other with noise removed. Part of their motivation was to see if co-occurrence representations was in fact how humans represented meaning themselves.
+	Originally, the LSA approach was primarily intended to remove uninformative singular values, and then reconstruct the term-document matrix (Landauer et al 1998) [CITATION].  The idea there was to compare documents to see how similar they were to each other with noise removed. Part of their motivation was to see if co-occurrence representations was in fact how humans represented meaning themselves.
 
-	(Katz et al) first applied LSA to WSD in an unsupervised approach by folding new documents with ambiguous word into the semantic space created by the SVD of the term-document matrix, and then used cosine-based clustering. We do a supervised implementation of this approach. 
+	(Katz et al) first applied LSA to WSD in an unsupervised approach by folding new documents with ambiguous word into the semantic space created by the SVD of the term-document matrix, and then used cosine-based clustering [CITATION]. We do a supervised implementation of this approach. 
 
 	It is worth noting that other similar approaches exist in recent years that are probably more powerful (but more difficult to implement). We detail them in the following sections. 
 
@@ -95,10 +95,10 @@
 
 	-- Formulated as early as 1999, this approach is based on mixture decomposition from latent class model. 
 	(this is a latent variable model for co-occurrence data)
-	Model fitting is done with Expectation Maximization (EM).
+	Model fitting is done with Expectation Maximization (EM). [CITATION]
 
 	\subsubsection{Non-Negative Matrix Factorization}
-	-- An alternative to using SVD is NNMF, which is a matrix factoring technique introduced by Lee and Seung  (2000).  Van de Cruys (2011) makes use of this technique:
+	-- An alternative to using SVD is NNMF, which is a matrix factoring technique introduced by Lee and Seung  (2000) [CITATION].  Van de Cruys (2011) makes use of this technique [CITATION]:
 	-- minimize Kullback-Leibler divergence instead of Euclidean distance
 
 	-- minimizing Kullback-Leibler divergence is better, since minimizing Euclidean distance makes the normal distribution assumption for language -- language is not Gaussian.
@@ -108,7 +108,7 @@
 	Van de Cruys (2011): uses this approach on SEMEVAL-2010 dataset. The rest of the approach is analogous to SVD-LSA, computing the centroid  of candidate vectors and comparing via Kullback-Leibler divergence to the target vector to determine word sense. 
 
 	\section{Data}
-	Senseval-2 (2001) dataset
+	Senseval-2 (2001) dataset [CITATION]
 	73 words that need to be disambiguated
 	         ex. fine, art, pull, turn, carry
 	Up to 43 senses per word
@@ -258,6 +258,13 @@
 	5. Tim Van de Cruys and Marianna Apidianaki. 2011. Latent Semantic Word Sense Induction and Disambiguation. Retrieved from http://aclweb.org/anthology//P/P11/P11-1148.pdf. 
 
 	6. Kirk Baker. 2013. Singular Value Decomposition Tutorial. Retrieved from http://www.ling.ohio-state. edu/~kbaker/pubs/Singular$\_$Value$\_$Decomposition$\_$Tutorial.pdf. 
+
+	7. Bird, Steven, Edward Loper and Ewan Klein (2009), Natural Language Processing with Python. O’Reilly Media Inc.
+
+	8. Princeton University "About WordNet." WordNet. Princeton University. 2010. <http://wordnet.princeton.edu>
+
+	9. ACL-SIGLEX. 2001. Evaluation Exercises for the Semantic Analysis of Text. Retrieved from http://www.senseval.org/. 
+
 
 
 
