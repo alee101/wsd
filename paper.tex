@@ -115,11 +115,17 @@
 	brown corpus
 
 	\section{Algorithms}
-	 Part of speech tagging and bigram models
- 	 Use for subset of data that has high predictability
- 	 Supervised LSA for the rest of the data
+	 Our approach was essentially a pipeline of different sorts of models. 
+	 The first stage consisted of part-of-speech tagging and bigram models, which
+	 was used for the subset of data that had high predictability. 
+	 Originally, we implemented a step that included knowledge-base approaches like
+	 semantic similarity, but later discarded it from the pipeline because its accuracy
+	 was not very good. 
 
- 	 Other methods had low accuracy 
+	 For the rest of the data, we implemented a Supervised LSA approach, which was to
+	 an extent a novel approach. 
+
+	 We detail the methods in the following sections. 
  	\subsection{Part-of-Speech}
  	\subsection{Semantic Knowledgebase}
 	\subsection{Supervised LSA}
