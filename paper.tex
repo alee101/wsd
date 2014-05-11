@@ -80,19 +80,22 @@
 
 	\subsubsection{Probabilistic LSA}
 
-	-- Formulated as early as 1999, this approach is based on mixture decomposition from latent class model. 
-	(this is a latent variable model for co-occurrence data)
-	Model fitting is done with Expectation Maximization (EM). [CITATION]
+	Formulated as early as 1999 in a paper by Hofmann [CITATION], this approach is based on mixture decomposition from latent class model. It uses a probabilistic model known as an aspect model, which is a latent variable model for co-occurrence data. It introduces a conditional dependence assumption, namely that the document random variable and the word random variable are independent conditioned on the state of the associated latent variable. 
+	
+	The Expectation Maximization (EM) algorithm is used for maximum likelihood estimation, as is standard procedure for latent variable models. This paper also introduces the notion of continuous latent space, produced by smoothing the discrete distribution due to the representation as a multinomial distribution
+	consisting of a convex combination of factors. This also results in dimension reduction, and we end up with a probablistic latent semantic space. 
+
+	The crucial difference between this approach and standard LSA is that LSA, the objective function to determine the optimal decomposition is results from the $L_2$ or Frobenius norm, which brings along with it an internal assumption of Gaussian noise. The PLSA model intends to maximize the predictive power of the model instead, which is related to minimizing cross-entropy, or Kullback-Leibler divergence. 
+
+	LSA does not define a properly normalized probability distribution, and this is one of its weaknesses.
 
 	\subsubsection{Non-Negative Matrix Factorization}
-	-- An alternative to using SVD is NNMF, which is a matrix factoring technique introduced by Lee and Seung  (2000) [CITATION].  Van de Cruys (2011) makes use of this technique [CITATION]:
-	-- minimize Kullback-Leibler divergence instead of Euclidean distance
+	Another alternative to using SVD is NNMF, which is a matrix factoring technique introduced by Lee and Seung  (2000). 
+	The primary advantages of this approach again relate to minimizing the Kullback-Leibler divergence instead of Euclidean distance. 
+	Again, minimizing Kullback-Leibler divergence is better since minimizing Euclidean distance makes the normal distribution assumption for language -- and language is not Gaussian.
+	It is also useful for extraction of semantic dimension since it turns out to have no negative relations encoded (all matrix values are positive). 
 
-	-- minimizing Kullback-Leibler divergence is better, since minimizing Euclidean distance makes the normal distribution assumption for language -- language is not Gaussian.
-	-- useful for extraction of semantic dimension 
-	-- turns out to be useful to have no negative relations encoded (all matrix values are positive)
-
-	Van de Cruys (2011): uses this approach on SEMEVAL-2010 dataset. The rest of the approach is analogous to SVD-LSA, computing the centroid  of candidate vectors and comparing via Kullback-Leibler divergence to the target vector to determine word sense. 
+	Van de Cruys et al (2011) [CITATION] applies this approach to the SEMEVAL-2010 dataset. The rest of the approach is analogous to SVD-LSA, computing the centroid  of candidate vectors and comparing via Kullback-Leibler divergence to the target vector to determine word sense. 
 
 	\section{Data}
 	Senseval-2 (2001) dataset [CITATION]
