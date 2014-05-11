@@ -68,24 +68,21 @@
 	 Use context of how word usually appears (bigram/trigram models)
  	 if (feature) then word sense
  	\subsection{LSA -- Past Efforts}
- 	LSA was one of the first approaches to make use of the co-occurrence model for word meaning. The idea, as implemented in the famous 1998 paper by Landauer [CITATION], is that given a set of corpuses, we build a term-document matrix where words are on the rows and documents are on the columns, and the frequencies are in the corresponding cells.
+ 	LSA was one of the first approaches to make use of the co-occurrence model for word meaning. The idea, as implemented in the famous 1998 paper by Landauer, is that given a set of corpuses, we build a term-document matrix where words are on the rows and documents are on the columns, and the frequencies are in the corresponding cells.
 	Then we apply SVD to this matrix. 
 	This approach is essentially unsupervised because it relies on clustering (word co-occurrence matrix) to derive similarities between documents and words. 
 
-	Originally, the LSA approach was primarily intended to remove uninformative singular values, and then reconstruct the term-document matrix (Landauer et al 1998) [CITATION].  The idea there was to compare documents to see how similar they were to each other with noise removed. Part of their motivation was to see if co-occurrence representations was in fact how humans represented meaning themselves.
+	Originally, the LSA approach was primarily intended to remove uninformative singular values, and then reconstruct the term-document matrix (Landauer et al 1998).  The idea there was to compare documents to see how similar they were to each other with noise removed. Part of their motivation was to see if co-occurrence representations was in fact how humans represented meaning themselves.
 
-	(Katz et al) first applied LSA to WSD in an unsupervised approach by folding new documents with ambiguous word into the semantic space created by the SVD of the term-document matrix, and then used cosine-based clustering [CITATION]. We do a supervised implementation of this approach. 
+	(Katz et al) first applied LSA to WSD in an unsupervised approach by folding new documents with ambiguous word into the semantic space created by the SVD of the term-document matrix, and then used cosine-based clustering. We do a supervised implementation of this approach. 
 
-	It is worth noting that other similar approaches exist in recent years that are probably more powerful (but more difficult to implement). We detail them in the following sections. 
+	It is worth noting that other similar approaches exist in recent years that are probably more powerful (but more difficult to implement). We detail them in the next slide. 
 
-	\subsubsection{Probabilistic LSA}
-
-	-- Formulated as early as 1999, this approach is based on mixture decomposition from latent class model. 
+	-- Probabilistic LSA: Formulated as early as 1999, this approach is based on mixture decomposition from latent class model. 
 	(this is a latent variable model for co-occurrence data)
-	Model fitting is done with Expectation Maximization (EM). [CITATION]
+	Model fitting is done with Expectation Maximization (EM).
 
-	\subsubsection{Non-Negative Matrix Factorization}
-	-- An alternative to using SVD is NNMF, which is a matrix factoring technique introduced by Lee and Seung  (2000) [CITATION].  Van de Cruys (2011) makes use of this technique [CITATION]:
+	-- Non-Negative Matrix Factorization: An alternative to using SVD is NNMF, which is a matrix factoring technique introduced by Lee and Seung  (2000).  Van de Cruys (2011) makes use of this technique:
 	-- minimize Kullback-Leibler divergence instead of Euclidean distance
 
 	-- minimizing Kullback-Leibler divergence is better, since minimizing Euclidean distance makes the normal distribution assumption for language -- language is not Gaussian.
@@ -95,7 +92,7 @@
 	Van de Cruys (2011): uses this approach on SEMEVAL-2010 dataset. The rest of the approach is analogous to SVD-LSA, computing the centroid  of candidate vectors and comparing via Kullback-Leibler divergence to the target vector to determine word sense. 
 
 	\section{Data}
-	Senseval-2 (2001) dataset [CITATION]
+	Senseval-2 (2001) dataset
 	73 words that need to be disambiguated
 	         ex. fine, art, pull, turn, carry
 	Up to 43 senses per word
@@ -105,48 +102,30 @@
 	brown corpus
 
 	\section{Algorithms}
-	 Our approach was essentially a pipeline of different sorts of models. 
-	 The first stage consisted of part-of-speech tagging and bigram models, which
-	 was used for the subset of data that had high predictability. 
-	 Originally, we implemented a step that included knowledge-base approaches like
-	 semantic similarity, but later discarded it from the pipeline because its accuracy
-	 was not very good. 
+	 Part of speech tagging and bigram models
+ 	 Use for subset of data that has high predictability
+ 	 Supervised LSA for the rest of the data
 
-	 For the rest of the data, we implemented a Supervised LSA approach, which was to
-	 an extent a novel approach. 
-
-	 We detail the methods in the following sections. 
+ 	 Other methods had low accuracy 
  	\subsection{Part-of-Speech}
  	\subsection{Semantic Knowledgebase}
 	\subsection{Supervised LSA}
 	Our approach uses simple LSA with a supervised learning component. 
 
-	The steps are as follows: 
+	1) Build term-document matrix 
+		a) terms are words in Brown Corpus and in training data
+		b) documents are categories of Brown, and concatenated paragraphs of training data with same word sense for ambiguous word
+	2) Apply SVD to get $U$, $D$, $V^T$.
 
-	\begin{enumerate}
-
-	\item Build term-document matrix 
-		\begin{enumerate}
-		\item terms are words in Brown Corpus and in training data
-		\item documents are categories of Brown, and concatenated paragraphs of training data with same word sense for ambiguous word
-		\end{enumerate}
-	\item Apply SVD to get $U$, $D$, $V^T$.
-
-	Then we have the supervised aspect of the LSA.  
-	\item For each (paragraph, ambiguous word, word sense) tuple in the training data:
-		\begin{enumerate}
-		\item create vector in the term-document space
-		\item fold this vector into the reduced semantic space of V
-		\item use cosine similarity to come up with the eigentopic most associated with the paragraph.
-		\end{enumerate} 
+	Supervised part: 
+	3) For each (paragraph, ambiguous word, word sense) tuple in the training data:
+		a) create vector in the term-document space
+		b) fold this vector into the reduced semantic space of V
+		c) use cosine similarity to come up with the eigentopic most associated with the paragraph. 
 	Then, we have built an association between each word sense and an eigentopic vector in V. 
-	\item For each (paragraph, ambiguous word) in testing data:
-		\begin{enumerate}
-		\item come up with the eigentopic vector associated
-		\item For that eigentopic vector, there is a probability for each word sense for a given word -- we pick the highest probability word sense for the word we are disambiguating
-		\end{enumerate}
-
-	\end{enumerate}
+	4) For each (paragraph, ambiguous word) in testing data:
+		a) come up with the eigentopic vector associated
+		b) For that eigentopic vector, there is a probability for each word sense for a given word -- we pick the highest probability word sense for the word we are disambiguating
 
 	In other words, for a given eigentopic, we will always pick the same word sense for a given word. This approach has its flaws.
 
@@ -191,8 +170,7 @@
 
 	"Before he lost his money he had the good sense to commission John Soane to design the Campden Hill Square house." (a general conscious awareness)
 
-	\subsection{Supervised LSA}
-
+	Supervised LSA: 
 	a) With only the Brown Corpus categories as column vectors ($15$ column vectors -> reduced to $9$) in the term-document matrix: ~ $42\%$
 	b) With the Brown Corpus categories + the word-sense categories (in total, 861 column vectors -> reduced to $140$ column vectors after SVD): ~ $38\%$
 	-- highly dependent on the training data -- different results for different words, some words had lower percentages, some had higher percentages (as low as $7\%$, as high as $61\%$)
@@ -245,13 +223,6 @@
 	5. Tim Van de Cruys and Marianna Apidianaki. 2011. Latent Semantic Word Sense Induction and Disambiguation. Retrieved from http://aclweb.org/anthology//P/P11/P11-1148.pdf. 
 
 	6. Kirk Baker. 2013. Singular Value Decomposition Tutorial. Retrieved from http://www.ling.ohio-state. edu/~kbaker/pubs/Singular$\_$Value$\_$Decomposition$\_$Tutorial.pdf. 
-
-	7. Bird, Steven, Edward Loper and Ewan Klein (2009), Natural Language Processing with Python. O’Reilly Media Inc.
-
-	8. Princeton University "About WordNet." WordNet. Princeton University. 2010. <http://wordnet.princeton.edu>
-
-	9. ACL-SIGLEX. 2001. Evaluation Exercises for the Semantic Analysis of Text. Retrieved from http://www.senseval.org/. 
-
 
 
 
