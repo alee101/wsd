@@ -1,4 +1,5 @@
 wsd
 ===
 
-Word sense disambiguation
+COS 401 Final Project: Word sense disambiguation
+Albert Lee, Evelyn Ding, Kiran Vodrahalli

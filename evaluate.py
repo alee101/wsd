@@ -12,7 +12,7 @@ with open('out') as f_predictions:
         (word, iid, sensekey) = fields[:3]
         metadata = fields[3:]
         if sensekey in answers[word][iid]:
-            print 'Yes', metadata, sensekey
+            print 'Yes'
         else:
-            print 'No', metadata, sensekey, 'vs.', answers[word][iid]
+            print 'No'
 
